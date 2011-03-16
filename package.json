@@ -1,7 +1,7 @@
 {
     "name": "shortcuts",
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
-    "author": "Tim Taubert",
+    "author": "Tim Taubert <tim@timtaubert.de>",
     "version": "0.1",
     "fullName": "Shortcuts",
     "id": "shortcuts@timtaubert.de",
