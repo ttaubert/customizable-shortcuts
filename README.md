@@ -17,6 +17,8 @@ discover already existing shortcuts.
 * group shortcuts into topics
 * check startup performance
 * visually mark custom shortcuts (e.g. bold font)
+* support shortcut keys without id attribute
+* cancel shortcut change after editing started
 
 # License
 
