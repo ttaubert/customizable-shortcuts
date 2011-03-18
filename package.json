@@ -1,9 +1,10 @@
 {
-    "name": "shortcuts",
+    "name": "firefox-shortcuts",
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
     "author": "Tim Taubert <tim@timtaubert.de>",
-    "version": "0.1",
-    "fullName": "Shortcuts",
-    "id": "shortcuts@timtaubert.de",
-    "description": "Customize shortcuts"
+    "url": "http://timtaubert.de/firefox-shortcuts",
+    "version": "0.2",
+    "fullName": "Firefox Shortcuts",
+    "id": "firefox-shortcuts@timtaubert.de",
+    "description": "Allows to customize Firefox shortcuts"
 }
