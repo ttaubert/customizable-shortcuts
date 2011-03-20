@@ -6,7 +6,7 @@ discover already existing shortcuts.
 - Version: 0.2
 - Date: 2011/03/18
 - Screenshot: <http://bit.ly/e7dt8k>
-- Official site: <https://github.com/ttaubert/firefox-shortcuts>
+- Official site: <https://github.com/ttaubert/customizable-shortcuts>
 
 # TODO
 
