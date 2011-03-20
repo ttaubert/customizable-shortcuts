@@ -19,6 +19,7 @@ discover already existing shortcuts.
 * visually mark custom shortcuts (e.g. bold font)
 * support shortcut keys without id attribute
 * cancel shortcut change after editing started
+* handle duplicate shortcuts from XUL overlays
 
 # License
 
