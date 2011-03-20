@@ -23,4 +23,4 @@ discover already existing shortcuts.
 
 # License
 
-Firefox Shortcuts Add-on is licensed under the terms of MPL 1.1/GPL 2.0/LGPL 2.1.
+Customizable Shortcuts is licensed under the terms of MPL 1.1/GPL 2.0/LGPL 2.1.
