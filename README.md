@@ -11,7 +11,6 @@ discover already existing shortcuts.
 # TODO
 
 * find a nice icon for the add-on and the prefpane button
-* allow to reset a custom shortcut to its default value
 * detect and warn about shortcut collisions
 * group shortcuts into topics
 * check startup performance
