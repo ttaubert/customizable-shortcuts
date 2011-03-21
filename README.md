@@ -13,7 +13,6 @@ discover already existing shortcuts.
 * find a nice icon for the add-on and the prefpane button
 * allow to reset a custom shortcut to its default value
 * detect and warn about shortcut collisions
-* quick search/filter for shortcuts above the list
 * group shortcuts into topics
 * check startup performance
 * visually mark custom shortcuts (e.g. bold font)
