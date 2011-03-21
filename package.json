@@ -2,7 +2,7 @@
     "name": "customizable-shortcuts",
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1",
     "author": "Tim Taubert <tim@timtaubert.de>",
-    "url": "http://timtaubert.de/firefox-shortcuts",
+    "url": "https://github.com/ttaubert/customizable-shortcuts",
     "version": "0.2",
     "fullName": "Customizable Shortcuts",
     "id": "customizable-shortcuts@timtaubert.de",
