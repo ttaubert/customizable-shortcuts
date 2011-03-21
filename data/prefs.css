@@ -1,0 +1,3 @@
+#shortcutsTree > treechildren::-moz-tree-cell-text(overlayed) {
+  font-weight: 700;
+}

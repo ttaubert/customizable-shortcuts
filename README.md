@@ -14,7 +14,6 @@ discover already existing shortcuts.
 * detect and warn about shortcut collisions
 * group shortcuts into topics
 * check startup performance
-* visually mark custom shortcuts (e.g. bold font)
 * support shortcut keys without id attribute
 * handle duplicate shortcuts from XUL overlays
 
