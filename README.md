@@ -5,7 +5,7 @@ discover already existing shortcuts.
 
 - Version: 0.4
 - Date: 2011/03/22
-- Screenshot: <http://bit.ly/e7dt8k>
+- Screenshot: <http://bit.ly/hEeMxg>
 - Official site: <https://github.com/ttaubert/customizable-shortcuts>
 
 # TODO
