@@ -3,8 +3,8 @@
 This Firefox add-on allows the user to customize shortcuts. It also helps to
 discover already existing shortcuts.
 
-- Version: 0.3
-- Date: 2011/03/21
+- Version: 0.4
+- Date: 2011/03/22
 - Screenshot: <http://bit.ly/e7dt8k>
 - Official site: <https://github.com/ttaubert/customizable-shortcuts>
 
