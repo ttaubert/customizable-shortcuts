@@ -16,6 +16,7 @@ discover already existing shortcuts.
 * check startup performance
 * support shortcut keys without id attribute
 * handle duplicate shortcuts from XUL overlays
+* write tests
 
 # License
 
