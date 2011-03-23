@@ -12,7 +12,6 @@ discover already existing shortcuts.
 
 * find a nice icon for the add-on and the prefpane button
 * detect and warn about shortcut collisions
-* group shortcuts into topics
 * check startup performance
 * support shortcut keys without id attribute
 * handle duplicate shortcuts from XUL overlays
