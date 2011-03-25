@@ -32,6 +32,10 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+#BrowserPreferences radio[pane="paneShortcuts"] {
+  list-style-image: url("resource://customizable-shortcuts-at-timtaubert-dot-de-customizable-shortcuts-data/icon.png");
+}
+
 #shortcutsTree > treechildren::-moz-tree-cell-text(container),
 #shortcutsTree > treechildren::-moz-tree-cell-text(overlayed) {
   font-weight: 700;
