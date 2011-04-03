@@ -37,8 +37,12 @@
 }
 
 #shortcutsTree > treechildren::-moz-tree-cell-text(container),
-#shortcutsTree > treechildren::-moz-tree-cell-text(overlayed) {
+#shortcutsTree > treechildren::-moz-tree-cell-text(custom) {
   font-weight: 700;
+}
+
+#shortcutsTree > treechildren::-moz-tree-cell-text(overridden) {
+  text-decoration: line-through;
 }
 
 #shortcutsTree > treechildren::-moz-tree-cell-text(container) {
