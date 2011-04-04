@@ -13,7 +13,6 @@ discover already existing shortcuts.
 * detect and warn about shortcut collisions
 * check startup performance
 * support shortcut keys without id attribute
-* handle duplicate shortcuts from XUL overlays
 * write tests
 
 # License
