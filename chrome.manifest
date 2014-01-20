@@ -1,0 +1,3 @@
+content customizable-shortcuts          chrome/content/ contentaccessible=yes
+skin    customizable-shortcuts  icons   chrome/skin/
+locale  customizable-shortcuts  en-US 	chrome/locale/en-US/

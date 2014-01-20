@@ -1,0 +1,8 @@
+<!ENTITY dialog_title "Customizable Shortcuts">
+<!ENTITY filter_placeholder "Search">
+<!ENTITY action_column.label "Action">
+<!ENTITY shortcut_column.label "Shortcut">
+<!ENTITY reset_button.label "Reset">
+<!ENTITY edit_button.label "Edit">
+<!ENTITY disable_button.label "Disable">
+<!ENTITY accept_button.label "Close">
