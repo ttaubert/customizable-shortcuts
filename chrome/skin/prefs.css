@@ -1,0 +1,499 @@
+/* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Initial Developer of the Original Code is
+ * Tim Taubert <tim@timtaubert.de>
+ * Portions created by the Initial Developer are Copyright (C) 2011
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ *
+ * Alternatively, the contents of this file may be used under the terms of
+ * either the GNU General Public License Version 2 or later (the "GPL"), or
+ * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+ * in which case the provisions of the GPL or the LGPL are applicable instead
+ * of those above. If you wish to allow use of your version of this file only
+ * under the terms of either the GPL or the LGPL, and not to allow others to
+ * use your version of this file under the terms of the MPL, indicate your
+ * decision by deleting the provisions above and replace them with the notice
+ * and other provisions required by the GPL or the LGPL. If you do not delete
+ * the provisions above, a recipient may use your version of this file under
+ * the terms of any one of the MPL, the GPL or the LGPL.
+ *
+ * ***** END LICENSE BLOCK ***** */
+
+#ttShortcutsPrefsDialog {
+	width: 550px;
+	height: auto;
+    overflow: visible;
+}
+
+#ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(container),
+#ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(custom) {
+  font-weight: 700;
+}
+
+#ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(overridden) {
+  text-decoration: line-through;
+}
+
+#ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(disabled) {
+  text-decoration: line-through;
+  color:red;
+}
+
+#ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(container) {
+  padding-left: 4px;
+}
+
+
+#ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextaqua) {
+  font-weight: 700;
+  color:aqua;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextaquamarine) {
+  font-weight: 700;
+  color:aquamarine;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextblue) {
+  font-weight: 700;
+  color:blue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextblueviolet) {
+  font-weight: 700;
+  color:blueviolet;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextbrown) {
+  font-weight: 700;
+  color:brown;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextburlywood) {
+  font-weight: 700;
+  color:burlywood;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextcadetblue) {
+  font-weight: 700;
+  color:cadetblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextchartreuse) {
+  font-weight: 700;
+  color:chartreuse;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextchocolate) {
+  font-weight: 700;
+  color:chocolate;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextcoral) {
+  font-weight: 700;
+  color:coral;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextcornflowerblue) {
+  font-weight: 700;
+  color:cornflowerblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextcrimson) {
+  font-weight: 700;
+  color:crimson;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextcyan) {
+  font-weight: 700;
+  color:cyan;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkblue) {
+  font-weight: 700;
+  color:darkblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkcyan) {
+  font-weight: 700;
+  color:darkcyan;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkgoldenrod) {
+  font-weight: 700;
+  color:darkgoldenrod;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkgray) {
+  font-weight: 700;
+  color:darkgray;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkgreen) {
+  font-weight: 700;
+  color:darkgreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkgrey) {
+  font-weight: 700;
+  color:darkgrey;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkkhaki) {
+  font-weight: 700;
+  color:darkkhaki;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkmagenta) {
+  font-weight: 700;
+  color:darkmagenta;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkolivegreen) {
+  font-weight: 700;
+  color:darkolivegreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkorange) {
+  font-weight: 700;
+  color:darkorange;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkorchid) {
+  font-weight: 700;
+  color:darkorchid;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkred) {
+  font-weight: 700;
+  color:darkred;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarksalmon) {
+  font-weight: 700;
+  color:darksalmon;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkseagreen) {
+  font-weight: 700;
+  color:darkseagreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkslateblue) {
+  font-weight: 700;
+  color:darkslateblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkslategray) {
+  font-weight: 700;
+  color:darkslategray;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkturquoise) {
+  font-weight: 700;
+  color:darkturquoise;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdarkviolet) {
+  font-weight: 700;
+  color:darkviolet;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdeeppink) {
+  font-weight: 700;
+  color:deeppink;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdeepskyblue) {
+  font-weight: 700;
+  color:deepskyblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdimgray) {
+  font-weight: 700;
+  color:dimgray;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextdodgerblue) {
+  font-weight: 700;
+  color:dodgerblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextforestgreen) {
+  font-weight: 700;
+  color:forestgreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextfuchsia) {
+  font-weight: 700;
+  color:fuchsia;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextgold) {
+  font-weight: 700;
+  color:gold;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextgoldenrod) {
+  font-weight: 700;
+  color:goldenrod;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextgray) {
+  font-weight: 700;
+  color:gray;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextgreen) {
+  font-weight: 700;
+  color:green;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextgreenyellow) {
+  font-weight: 700;
+  color:greenyellow;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketexthotpink) {
+  font-weight: 700;
+  color:hotpink;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextindianred) {
+  font-weight: 700;
+  color:indianred;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextindigo) {
+  font-weight: 700;
+  color:indigo;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextkhaki) {
+  font-weight: 700;
+  color:khaki;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlawngreen) {
+  font-weight: 700;
+  color:lawngreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightblue) {
+  font-weight: 700;
+  color:lightblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightcoral) {
+  font-weight: 700;
+  color:lightcoral;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightcyan) {
+  font-weight: 700;
+  color:lightcyan;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightgreen) {
+  font-weight: 700;
+  color:lightgreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightpink) {
+  font-weight: 700;
+  color:lightpink;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightsalmon) {
+  font-weight: 700;
+  color:lightsalmon;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightseagreen) {
+  font-weight: 700;
+  color:lightseagreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightskyblue) {
+  font-weight: 700;
+  color:lightskyblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightslategray) {
+  font-weight: 700;
+  color:lightslategray;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlightsteelblue) {
+  font-weight: 700;
+  color:lightsteelblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlime) {
+  font-weight: 700;
+  color:lime;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextlimegreen) {
+  font-weight: 700;
+  color:limegreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmagenta) {
+  font-weight: 700;
+  color:magenta;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumaquamarine) {
+  font-weight: 700;
+  color:mediumaquamarine;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumblue) {
+  font-weight: 700;
+  color:mediumblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumorchid) {
+  font-weight: 700;
+  color:mediumorchid;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumpurple) {
+  font-weight: 700;
+  color:mediumpurple;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumseagreen) {
+  font-weight: 700;
+  color:mediumseagreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumslateblue) {
+  font-weight: 700;
+  color:mediumslateblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumspringgreen) {
+  font-weight: 700;
+  color:mediumspringgreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumturquoise) {
+  font-weight: 700;
+  color:mediumturquoise;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmediumvioletred) {
+  font-weight: 700;
+  color:mediumvioletred;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmidnightblue) {
+  font-weight: 700;
+  color:midnightblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextmistyrose) {
+  font-weight: 700;
+  color:mistyrose;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextnavy) {
+  font-weight: 700;
+  color:navy;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextolive) {
+  font-weight: 700;
+  color:olive;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextolivedrab) {
+  font-weight: 700;
+  color:olivedrab;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextorange) {
+  font-weight: 700;
+  color:orange;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextorangered) {
+  font-weight: 700;
+  color:orangered;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextorchid) {
+  font-weight: 700;
+  color:orchid;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextpalegreen) {
+  font-weight: 700;
+  color:palegreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextpaleturquoise) {
+  font-weight: 700;
+  color:paleturquoise;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextpalevioletred) {
+  font-weight: 700;
+  color:palevioletred;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextperu) {
+  font-weight: 700;
+  color:peru;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextpink) {
+  font-weight: 700;
+  color:pink;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextplum) {
+  font-weight: 700;
+  color:plum;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextpowderblue) {
+  font-weight: 700;
+  color:powderblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextpurple) {
+  font-weight: 700;
+  color:purple;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextrosybrown) {
+  font-weight: 700;
+  color:rosybrown;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextroyalblue) {
+  font-weight: 700;
+  color:royalblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextsaddlebrown) {
+  font-weight: 700;
+  color:saddlebrown;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextsalmon) {
+  font-weight: 700;
+  color:salmon;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextsandybrown) {
+  font-weight: 700;
+  color:sandybrown;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextseagreen) {
+  font-weight: 700;
+  color:seagreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextsienna) {
+  font-weight: 700;
+  color:sienna;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextskyblue) {
+  font-weight: 700;
+  color:skyblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextslateblue) {
+  font-weight: 700;
+  color:slateblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextslategray) {
+  font-weight: 700;
+  color:slategray;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextspringgreen) {
+  font-weight: 700;
+  color:springgreen;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextsteelblue) {
+  font-weight: 700;
+  color:steelblue;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketexttan) {
+  font-weight: 700;
+  color:tan;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextteal) {
+  font-weight: 700;
+  color:teal;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextthistle) {
+  font-weight: 700;
+  color:thistle;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketexttomato) {
+  font-weight: 700;
+  color:tomato;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextturquoise) {
+  font-weight: 700;
+  color:turquoise;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextviolet) {
+  font-weight: 700;
+  color:violet;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextwheat) {
+  font-weight: 700;
+  color:wheat;
+}
+ #ttCustomizableShortcuts_Tree > treechildren::-moz-tree-cell-text(maketextyellowgreen) {
+  font-weight: 700;
+  color:yellowgreen;
+}
+
+hbox,
+vbox,
+separator,
+spacer,
+#ttCustomizableShortcuts_TreeBox,
+#ttCustomizableShortcuts_ButtonBox,
+#ttCustomizableShortcuts_SearchBox
+ {
+	      padding: 1px;
+	      margin: 1px;
+		}
+		
+#ttCustomizableShortcuts_Reset,
+#ttCustomizableShortcuts_Edit,
+#ttCustomizableShortcuts_Disable {
+padding-left:1px;
+padding-right:1px;
+width:auto;
+}

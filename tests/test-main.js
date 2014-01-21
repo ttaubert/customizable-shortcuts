@@ -1,11 +1,11 @@
-const main = require("main");
+const main = require("main.js");
 
 exports.test_test_run = function(test) {
   test.pass("Unit test running!");
 };
 
 exports.test_id = function(test) {
-  test.assert(require("self").id.length > 0);
+  test.assert(require("sdk/self").id.length > 0);
 };
 
 exports.test_url = function(test) {
