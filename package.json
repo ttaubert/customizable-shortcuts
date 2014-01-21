@@ -8,28 +8,30 @@
     "id": "customizable-shortcuts@timtaubert.de",
     "description": "Enables customization and overriding of several default shortcuts.",
     "contributors": ["Gregorio Litenstein <mazinger@vtr.net>"],
-    "icon": "data/icon48.png",
-    "icon64": "data/icon64.png",
-    "permissions": {
-        "private-browsing": true
+    "icon":"data/icon48.png",
+    "icon64":"data/icon64.png",
+    "permissions":{"private-browsing":true},
+    "preferences":[
+    {
+    "name": "overridePluginFocus",
+    "type": "bool",
+    "title": "Steal focus from plug-ins?",
+    "description":"When this is on, plugins such as flash will be told to release mouse focus immediately after they have been clicked on.",
+    "value":true    
     },
-    "preferences": [{
-        "name": "overridePluginFocus",
-        "type": "bool",
-        "title": "Steal focus from plug-ins?",
-        "description": "When this is on, plugins such as flash will be told to release mouse focus immediately after they have been clicked on.",
-        "value": true
-    }, {
-        "name": "pluginCssSelectors",
-        "type": "string",
-        "title": "List of CSS Selectors by which to find plugins",
-        "description": "This list will define which plugins the extension will try to override as described above.",
-        "value": "embed,object"
-    }, {
-        "name": "domainUrlPattern",
-        "type": "string",
-        "title": "Address Pattern",
-        "description": "This pattern will be used to define which sites we will try to prevent focus capturing on. You can use * as wildcards or provide a (case-sensitive) Regular Expression.",
-        "value": "*"
-    }]
+    {
+    "name": "pluginCssSelectors",
+    "type": "string",
+    "title": "List of CSS Selectors by which to find plugins",
+    "description":"This list will define which plugins the extension will try to override as described above.",
+    "value":"embed,object"
+    },
+    {
+    "name": "domainUrlPattern",
+    "type": "string",
+    "title": "Address Pattern",
+    "description":"This pattern will be used to define which sites we will try to prevent focus capturing on. You can use * as wildcards or provide a (case-sensitive) Regular Expression.",
+    "value":"*"
+    }   
+    ]
 }
