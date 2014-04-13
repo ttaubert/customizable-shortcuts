@@ -76,10 +76,21 @@ function modifiersFromEvent(event) {
   return modifiers;
 }
 
-function getCombination(event) {
+function keyCodeFromEvent(event) {
+  for (let name of Object.keys(gDOMKeys)) {
+    let key = gDOMKeys[name];
+
+    if (!isModifier(key) && event.keyCode == key) {
+      return name.replace(/^DOM_/, "");
+    }
+  }
+
+  return null;
+}
+
+function getCombination(modifiers, key, keycode) {
   let parts = [];
 
-  let modifiers = modifiersFromEvent(event);
   if (modifiers.size) {
     if (modifiers.has("accel")) {
       modifiers.add(gAccelKeyName);
@@ -92,17 +103,15 @@ function getCombination(event) {
     }
   }
 
-  for (let name of Object.keys(gDOMKeys)) {
-    let key = gDOMKeys[name];
+  if (key) {
+    parts.push(String.fromCharCode(key));
+  }
 
-    if (!isModifier(key) && event.keyCode == key) {
-      let keycode = name.replace(/^DOM_/, "");
-      let keyName = keycode.replace(/^VK_/, "");
-      keyName = keyName[0] + keyName.substr(1).toLowerCase();
-      keyName = keyName.replace(/_[a-z]/i, str => str[1].toUpperCase());
-      parts.push(keyName);
-      break;
-    }
+  if (keycode) {
+    let keyName = keycode.replace(/^VK_/, "");
+    keyName = keyName[0] + keyName.substr(1).toLowerCase();
+    keyName = keyName.replace(/_[a-z]/i, str => str[1].toUpperCase());
+    parts.push(keyName);
   }
 
   return parts.join("");
@@ -119,7 +128,9 @@ addEventListener("keydown", function (event) {
   event.preventDefault();
   event.stopPropagation();
 
-  tree.inputField.value = getCombination(event);
+  let keycode = keyCodeFromEvent(event);
+  let modifiers = modifiersFromEvent(event);
+  tree.inputField.value = getCombination(modifiers, null, keycode);
 
   //let {editingRow, editingColumn} = tree;
   //let id = tree.view.getCellValue(editingRow, editingColumn);
