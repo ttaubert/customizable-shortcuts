@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="panel.css" type="text/css"?>
+
+<window id="shortcuts-panel" title="Customize Shortcuts"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <vbox flex="1">
+    <hbox>
+      <textbox id="filter" flex="1" type="search"
+               placeholder="Search for shortcut"/>
+    </hbox>
+
+    <tree id="shortcutsTree" seltype="single" editable="true" flex="1"
+          hidecolumnpicker="true" disableKeyNavigation="true">
+
+      <treecols>
+        <!--treecol type="checkbox" editable="true"/-->
+        <treecol id="colAction" label="Action" flex="1" primary="true"/>
+        <treecol id="colShortcut" label="Shortcut" editable="true" flex="1"/>
+      </treecols>
+
+      <treechildren id="tree-children"/>
+    </tree>
+  </vbox>
+
+</window>
