@@ -27,8 +27,6 @@ TreeView.prototype = {
 
       if (group.open) {
         for (let key of group.keys) {
-          let modifiers = new Set(key.modifiers || []);
-          key.combination = getCombination(modifiers, key.key, key.keycode);
           this.rows.push({type: "key", key: key, parentIdx: parentIdx});
         }
       }

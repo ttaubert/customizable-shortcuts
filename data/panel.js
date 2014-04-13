@@ -7,7 +7,7 @@
 const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 224: "meta"};
 const MODIFIER_NAMES = {control: "Ctrl", meta: "Meta", shift: "Shift", alt: "Alt"};
 
-let gKeys = {};
+let gKeys = new Map();
 let gDOMKeys = {};
 let gAccelKeyName = "control";
 
@@ -29,7 +29,12 @@ addEventListener("load", function () {
 });
 
 self.port.on("init", function ({keys, DOMKeys, accelKey}) {
-  gKeys = keys;
+  keys.forEach(key => {
+    let modifiers = new Set(key.modifiers || []);
+    key.combination = getCombination(modifiers, key.key, key.keycode);
+    gKeys.set(key.id, key);
+  });
+
   gDOMKeys = DOMKeys;
   gAccelKeyName = MODIFIER_KEYS[accelKey] || "control";
 
@@ -37,25 +42,16 @@ self.port.on("init", function ({keys, DOMKeys, accelKey}) {
 });
 
 function updateTreeView(term) {
-  let data = {};
+  let keys = new Map();
 
-  // Filter by the given term.
-  for (let name of Object.keys(gKeys)) {
-    data[name] = gKeys[name];
-
-    if (term) {
-      data[name] = data[name].filter(key => {
-        return true;
-        //return key.label.toLowerCase().contains(term) ||
-               //key.combination.toLowerCase().contains(term);
-      });
-    }
-
-    if (data[name].length == 0) {
-      delete data[name];
+  for (let [id, key] of gKeys) {
+    // Filter by the given term.
+    if (!term || key.label.toLowerCase().contains(term) || key.combination.toLowerCase().contains(term)) {
+      keys.set(id, key);
     }
   }
 
+  let data = groupKeys(keys);
   unsafeWindow.document.getElementById("shortcutsTree").view = new TreeView(data);
 }
 
