@@ -7,6 +7,7 @@
 const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 224: "meta"};
 const MODIFIER_NAMES = {control: "Ctrl", meta: "Meta", shift: "Shift", alt: "Alt"};
 
+let gKeys = {};
 let gDOMKeys = {};
 let gAccelKeyName = "control";
 
@@ -16,23 +17,47 @@ addEventListener("load", function () {
     style.remove();
   }
 
-  // TODO
+  // TODO sent by parent on show?
   self.port.emit("init");
-
-  // TODO do on show?
-  self.port.emit("tree-data", "");
 
   // Update the tree when the filter text changes.
   let textbox = document.getElementById("filter");
   textbox.addEventListener("command", () => {
-    self.port.emit("tree-data", textbox.value);
+    // Normalize search term and update list of keys.
+    updateTreeView(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
   });
 });
 
-self.port.on("init", function ({DOMKeys, accelKey}) {
+self.port.on("init", function ({keys, DOMKeys, accelKey}) {
+  gKeys = keys;
   gDOMKeys = DOMKeys;
   gAccelKeyName = MODIFIER_KEYS[accelKey] || "control";
+
+  updateTreeView();
 });
+
+function updateTreeView(term) {
+  let data = {};
+
+  // Filter by the given term.
+  for (let name of Object.keys(gKeys)) {
+    data[name] = gKeys[name];
+
+    if (term) {
+      data[name] = data[name].filter(key => {
+        return true;
+        //return key.label.toLowerCase().contains(term) ||
+               //key.combination.toLowerCase().contains(term);
+      });
+    }
+
+    if (data[name].length == 0) {
+      delete data[name];
+    }
+  }
+
+  unsafeWindow.document.getElementById("shortcutsTree").view = new TreeView(data);
+}
 
 function isModifier(key) {
   return key in MODIFIER_KEYS;
@@ -142,7 +167,3 @@ addEventListener("keydown", function (event) {
     //this._onSelect(event);
   }
 }, true);
-
-self.port.on("tree-data", function (data) {
-  unsafeWindow.document.getElementById("shortcutsTree").view = new TreeView(data);
-});
