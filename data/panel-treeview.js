@@ -93,8 +93,7 @@ TreeView.prototype = {
 
   getCellValue: function (idx, column) {
     if (!this.isContainer(idx)) {
-      return "value";
-      return this.rows[idx].key.toString();
+      return this.rows[idx].key.id;
     }
   },
 
