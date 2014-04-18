@@ -6,23 +6,58 @@
   padding: 5px;
 }
 
-#shortcutsTree {
+#tree {
   margin-top: 5px;
 }
 
-#shortcutsTree > treechildren::-moz-tree-cell-text(container),
-#shortcutsTree > treechildren::-moz-tree-cell-text(custom) {
+#tree > treechildren::-moz-tree-cell-text(container),
+#tree > treechildren::-moz-tree-cell-text(custom) {
   font-weight: 700;
 }
 
-#shortcutsTree > treechildren::-moz-tree-cell-text(overridden) {
+#tree > treechildren::-moz-tree-cell-text(overridden) {
   text-decoration: line-through;
 }
 
-#shortcutsTree > treechildren::-moz-tree-cell-text(container) {
+#tree > treechildren::-moz-tree-cell-text(container) {
   padding-left: 4px;
 }
 
-#shortcutsTree> treechildren::-moz-tree-checkbox(checked) {
+#tree > treechildren::-moz-tree-checkbox(checked) {
   list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
 }
+
+button {
+  /* @hudButton@ /
+  -moz-appearance: none;
+  color: #434343;
+  border-radius: 4px;
+  border: 1px solid #b5b5b5;
+  background: linear-gradient(#fff, #f2f2f2);
+  box-shadow: inset 0 1px rgba(255,255,255,.8),
+              inset 0 0 1px rgba(255,255, 255,.25),
+              0 1px rgba(255,255,255,.3);
+  background-clip: padding-box;
+  background-origin: padding-box;
+  padding: 2px 6px;*/
+
+  min-width: 82px;
+  min-height: 22px;
+  -moz-margin-end: 0;
+}
+
+/*button:hover:active {
+  / @hudButtonPressed@ /
+  box-shadow: inset 0 1px 4px -3px #000, 0 1px rgba(255,255,255,.3);
+}
+
+button:-moz-focusring {
+  / @hudButtonFocused@ /
+  box-shadow: 0 0 1px -moz-mac-focusring inset,
+              0 0 4px 1px -moz-mac-focusring,
+              0 0 2px 1px -moz-mac-focusring;
+}
+
+button[default="true"] {
+  background-color: #666;
+}*/

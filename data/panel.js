@@ -10,21 +10,22 @@ const MODIFIER_NAMES = {control: "Ctrl", meta: "Meta", shift: "Shift", alt: "Alt
 let gKeys = new Map();
 let gDOMKeys = {};
 let gAccelKeyName = "control";
+let gTerm = "";
 
-// Remove HTML styles injected by the add-on SDK.
 addEventListener("load", function () {
+  // Work around bug 995889.
   for (let style of document.querySelectorAll("style")) {
     style.remove();
   }
 
-  // TODO sent by parent on show?
-  self.port.emit("init");
+  // Let the parent know we're ready.
+  self.port.emit("ready");
 
   // Update the tree when the filter text changes.
   let textbox = document.getElementById("filter");
   textbox.addEventListener("command", () => {
     // Normalize search term and update list of keys.
-    updateTreeView(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
+    treeview.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
   });
 });
 
@@ -38,22 +39,9 @@ self.port.on("init", function ({keys, DOMKeys, accelKey}) {
   gDOMKeys = DOMKeys;
   gAccelKeyName = MODIFIER_KEYS[accelKey] || "control";
 
-  updateTreeView();
+  // Render the tree.
+  treeview.update();
 });
-
-function updateTreeView(term) {
-  let keys = new Map();
-
-  for (let [id, key] of gKeys) {
-    // Filter by the given term.
-    if (!term || key.label.toLowerCase().contains(term) || key.combination.toLowerCase().contains(term)) {
-      keys.set(id, key);
-    }
-  }
-
-  let data = groupKeys(keys);
-  unsafeWindow.document.getElementById("shortcutsTree").view = new TreeView(data);
-}
 
 function isModifier(key) {
   return key in MODIFIER_KEYS;
@@ -139,10 +127,8 @@ function getCombination(modifiers, key, keycode) {
 }
 
 addEventListener("keydown", function (event) {
-  let tree = unsafeWindow.document.getElementById("shortcutsTree");
-
   // Ignore events when not in edit mode.
-  if (!tree.editingColumn) {
+  if (!treeview.isEditing) {
     return;
   }
 
@@ -151,15 +137,11 @@ addEventListener("keydown", function (event) {
 
   let keycode = keyCodeFromEvent(event);
   let modifiers = modifiersFromEvent(event);
-  tree.inputField.value = getCombination(modifiers, null, keycode);
-
-  //let {editingRow, editingColumn} = tree;
-  //let id = tree.view.getCellValue(editingRow, editingColumn);
+  treeview.updateInputField(getCombination(modifiers, null, keycode));
 
   if (isCompleteShortcut(event)) {
-    //new Overlay({key: keys.find(id), shortcut: shortcut});
-
-    tree.stopEditing(true);
-    //this._onSelect(event);
+    overlays.set(treeview.selected, modifiers, keycode);
+    treeview.stopEditing();
+    buttons.update();
   }
 }, true);

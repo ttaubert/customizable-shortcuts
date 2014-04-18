@@ -16,17 +16,22 @@
                placeholder="Search for shortcut"/>
     </hbox>
 
-    <tree id="shortcutsTree" seltype="single" editable="true" flex="1"
+    <tree id="tree" seltype="single" editable="true" flex="1"
           hidecolumnpicker="true" disableKeyNavigation="true">
 
       <treecols>
-        <!--treecol type="checkbox" editable="true"/-->
+        <!--treecol type="checkbox" editable="true" TODO /-->
         <treecol id="colAction" label="Action" flex="1" primary="true"/>
         <treecol id="colShortcut" label="Shortcut" editable="true" flex="1"/>
       </treecols>
 
       <treechildren id="tree-children"/>
     </tree>
+
+    <hbox>
+      <button id="edit" label="Edit" accesskey="e" disabled="true"/>
+      <button id="reset" label="Reset" accesskey="r" disabled="true"/>
+    </hbox>
   </vbox>
 
 </window>
