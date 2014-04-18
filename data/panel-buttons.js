@@ -10,18 +10,18 @@ let buttons = (function () {
   let reset = document.getElementById("reset");
 
   function update() {
-    let id = treeview.selected;
+    let id = tree.selected;
     edit.disabled = !id;
     reset.disabled = !overlays.has(id);
   }
 
   edit.addEventListener("command", function () {
-    treeview.editSelectedRow();
+    tree.editSelectedRow();
   });
 
   reset.addEventListener("command", function () {
-    overlays.clear(treeview.selected);
-    treeview.invalidateSelectedRow();
+    overlays.clear(tree.selected);
+    tree.invalidateSelectedRow();
     reset.disabled = true;
   });
 

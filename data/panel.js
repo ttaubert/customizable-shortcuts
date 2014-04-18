@@ -15,7 +15,7 @@ let textbox = document.getElementById("filter");
 // TODO stop ESC when text field is focused
 textbox.addEventListener("command", () => {
   // Normalize search term and update list of keys.
-  treeview.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
+  tree.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
 });
 
 function isModifier(key) {

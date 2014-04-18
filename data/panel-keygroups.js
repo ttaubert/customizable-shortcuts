@@ -62,7 +62,7 @@ let keygroups = (function () {
 
   function group(keys) {
     let remaining = new Map(keys);
-    let retval = {};
+    let retval = new Map();
 
     for (let name in KEY_GROUPS) {
       let group = [];
@@ -75,12 +75,12 @@ let keygroups = (function () {
       }
 
       if (group.length) {
-        retval[name] = group;
+        retval.set(name, group);
       }
     }
 
     if (remaining.size) {
-      retval["Other"] = [...remaining.values()];
+      retval.set("Other", [...remaining.values()]);
     }
 
     return retval;
