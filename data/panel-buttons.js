@@ -15,8 +15,6 @@ let buttons = (function () {
     reset.disabled = !overlays.has(id);
   }
 
-  addEventListener("select", update);
-
   edit.addEventListener("command", function () {
     treeview.editSelectedRow();
   });

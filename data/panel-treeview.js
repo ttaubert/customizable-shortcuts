@@ -146,15 +146,33 @@ let treeview = (function () {
     getColumnProperties: function () {}
   };
 
+  addEventListener("select", () => buttons.update());
+
+  addEventListener("keydown", function (event) {
+    // Ignore events when not in edit mode.
+    if (!tree.editingColumn) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    let keycode = keyCodeFromEvent(event);
+    let modifiers = modifiersFromEvent(event);
+    tree.inputField.value = getCombination(modifiers, null, keycode);
+
+    if (isCompleteShortcut(event)) {
+      overlays.set(treeview.selected, modifiers, keycode);
+      tree.stopEditing(true);
+      buttons.update();
+    }
+  }, true);
+
   return {
     get selected() {
       let row = tree.currentIndex;
       let column = tree.columns.getLastColumn();
       return tree.view.getCellValue(row, column);
-    },
-
-    get isEditing() {
-      return !!tree.editingColumn;
     },
 
     update: function () {
@@ -174,21 +192,13 @@ let treeview = (function () {
 
     filter: function (term) {
       filterTerm = term;
-      this.update();
+      treeview.update();
     },
 
     editSelectedRow: function () {
       let row = tree.currentIndex;
       let column = tree.columns.getLastColumn();
       tree.startEditing(row, column);
-    },
-
-    updateInputField: function (value) {
-      tree.inputField.value = value;
-    },
-
-    stopEditing: function () {
-      tree.stopEditing(true);
     },
 
     invalidateSelectedRow: function () {

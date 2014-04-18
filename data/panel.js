@@ -125,23 +125,3 @@ function getCombination(modifiers, key, keycode) {
 
   return parts.join("");
 }
-
-addEventListener("keydown", function (event) {
-  // Ignore events when not in edit mode.
-  if (!treeview.isEditing) {
-    return;
-  }
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  let keycode = keyCodeFromEvent(event);
-  let modifiers = modifiersFromEvent(event);
-  treeview.updateInputField(getCombination(modifiers, null, keycode));
-
-  if (isCompleteShortcut(event)) {
-    overlays.set(treeview.selected, modifiers, keycode);
-    treeview.stopEditing();
-    buttons.update();
-  }
-}, true);
