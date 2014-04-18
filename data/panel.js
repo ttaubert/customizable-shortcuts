@@ -7,40 +7,15 @@
 const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 224: "meta"};
 const MODIFIER_NAMES = {control: "Ctrl", meta: "Meta", shift: "Shift", alt: "Alt"};
 
-let gKeys = new Map();
-let gDOMKeys = {};
-let gAccelKeyName = "control";
-let gTerm = "";
+// Notify the parent that we're ready.
+self.port.emit("ready");
 
-addEventListener("load", function () {
-  // Work around bug 995889.
-  for (let style of document.querySelectorAll("style")) {
-    style.remove();
-  }
-
-  // Let the parent know we're ready.
-  self.port.emit("ready");
-
-  // Update the tree when the filter text changes.
-  let textbox = document.getElementById("filter");
-  textbox.addEventListener("command", () => {
-    // Normalize search term and update list of keys.
-    treeview.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
-  });
-});
-
-self.port.on("init", function ({keys, DOMKeys, accelKey}) {
-  keys.forEach(key => {
-    let modifiers = new Set(key.modifiers || []);
-    key.combination = getCombination(modifiers, key.key, key.keycode);
-    gKeys.set(key.id, key);
-  });
-
-  gDOMKeys = DOMKeys;
-  gAccelKeyName = MODIFIER_KEYS[accelKey] || "control";
-
-  // Render the tree.
-  treeview.update();
+// Update the tree when the filter text changes.
+let textbox = document.getElementById("filter");
+// TODO stop ESC when text field is focused
+textbox.addEventListener("command", () => {
+  // Normalize search term and update list of keys.
+  treeview.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
 });
 
 function isModifier(key) {
@@ -48,8 +23,8 @@ function isModifier(key) {
 }
 
 function isCompleteShortcut(event) {
-  for (let name of Object.keys(gDOMKeys)) {
-    let key = gDOMKeys[name];
+  for (let name of Object.keys(self.options.DOMKeys)) {
+    let key = self.options.DOMKeys[name];
 
     if (!isModifier(key) && event.keyCode == key) {
       return true;
@@ -86,8 +61,8 @@ function modifiersFromEvent(event) {
 }
 
 function keyCodeFromEvent(event) {
-  for (let name of Object.keys(gDOMKeys)) {
-    let key = gDOMKeys[name];
+  for (let name of Object.keys(self.options.DOMKeys)) {
+    let key = self.options.DOMKeys[name];
 
     if (!isModifier(key) && event.keyCode == key) {
       return name.replace(/^DOM_/, "");
@@ -102,7 +77,7 @@ function getCombination(modifiers, key, keycode) {
 
   if (modifiers.size) {
     if (modifiers.has("accel")) {
-      modifiers.add(gAccelKeyName);
+      modifiers.add(MODIFIER_KEYS[self.options.accelKey] || "control");
     }
 
     for (let name in MODIFIER_NAMES) {

@@ -6,6 +6,7 @@
 
 let treeview = (function () {
 
+  let storedKeys;
   let filterTerm = "";
   let tree = unsafeWindow.document.getElementById("tree");
 
@@ -146,7 +147,7 @@ let treeview = (function () {
     getColumnProperties: function () {}
   };
 
-  addEventListener("select", () => buttons.update());
+  tree.addEventListener("select", buttons.update);
 
   addEventListener("keydown", function (event) {
     // Ignore events when not in edit mode.
@@ -168,6 +169,19 @@ let treeview = (function () {
     }
   }, true);
 
+  self.port.on("keys", function (keys) {
+    storedKeys = keys;
+
+    for (let id of Object.keys(keys)) {
+      let key = keys[id];
+      let modifiers = new Set(key.modifiers || []);
+      key.combination = getCombination(modifiers, key.key, key.keycode);
+    }
+
+    // Render the tree.
+    treeview.update();
+  });
+
   return {
     get selected() {
       let row = tree.currentIndex;
@@ -178,7 +192,8 @@ let treeview = (function () {
     update: function () {
       let keys = new Map();
 
-      for (let [id, key] of gKeys) {
+      for (let id of Object.keys(storedKeys)) {
+        let key = storedKeys[id];
         // Filter by the current term.
         if (!filterTerm ||
             key.label.toLowerCase().contains(filterTerm) ||
@@ -193,6 +208,8 @@ let treeview = (function () {
     filter: function (term) {
       filterTerm = term;
       treeview.update();
+      // TODO filter should just invalidate tree, maybe?
+      //tree.treeBoxObject.invalidate();
     },
 
     editSelectedRow: function () {
