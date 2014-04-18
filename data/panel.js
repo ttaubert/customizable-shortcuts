@@ -12,10 +12,25 @@ self.port.emit("ready");
 
 // Update the tree when the filter text changes.
 let textbox = document.getElementById("filter");
-// TODO stop ESC when text field is focused
-textbox.addEventListener("command", () => {
+textbox.addEventListener("command", function (event) {
   // Normalize search term and update list of keys.
   tree.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
+});
+
+textbox.addEventListener("keydown", function (event) {
+  if (event.keyCode == KeyEvent.DOM_VK_ESCAPE && textbox.value != "") {
+    event.stopPropagation();
+  }
+}, true);
+
+addEventListener("keydown", function (event) {
+  if (event.keyCode == KeyEvent.DOM_VK_ESCAPE) {
+    self.port.emit("hide");
+  }
+});
+
+self.port.on("focus", function () {
+  window.focus();
 });
 
 function isModifier(key) {

@@ -27,6 +27,7 @@ let tree = (function () {
       overlays.set(tree.selected, modifiers, keycode);
       node.stopEditing(true);
       buttons.update();
+      node.focus();
     }
   }, true);
 
