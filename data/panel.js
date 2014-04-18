@@ -23,11 +23,13 @@ function isModifier(key) {
 }
 
 function isCompleteShortcut(event) {
-  for (let name of Object.keys(self.options.DOMKeys)) {
-    let key = self.options.DOMKeys[name];
+  for (let name of Object.keys(KeyEvent)) {
+    if (name.startsWith("DOM_VK_")) {
+      let key = KeyEvent[name];
 
-    if (!isModifier(key) && event.keyCode == key) {
-      return true;
+      if (!isModifier(key) && event.keyCode == key) {
+        return true;
+      }
     }
   }
 
@@ -61,11 +63,13 @@ function modifiersFromEvent(event) {
 }
 
 function keyCodeFromEvent(event) {
-  for (let name of Object.keys(self.options.DOMKeys)) {
-    let key = self.options.DOMKeys[name];
+  for (let name of Object.keys(KeyEvent)) {
+    if (name.startsWith("DOM_VK_")) {
+      let key = KeyEvent[name];
 
-    if (!isModifier(key) && event.keyCode == key) {
-      return name.replace(/^DOM_/, "");
+      if (!isModifier(key) && event.keyCode == key) {
+        return name.replace(/^DOM_/, "");
+      }
     }
   }
 

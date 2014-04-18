@@ -6,7 +6,7 @@
 
 let tree = (function () {
 
-  let allKeys;
+  let allKeys = new Map();
   let node = unsafeWindow.document.getElementById("tree");
   node.addEventListener("select", buttons.update);
 
