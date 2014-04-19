@@ -8,9 +8,8 @@ let overlays = (function () {
 
   let overlays = {};
 
-  function send() {
-    self.port.emit("overlays", overlays);
-  }
+  function send() self.port.emit("overlays", overlays);
+  self.port.on("overlays", ovs => overlays = ovs);
 
   return {
     has: function (id) {

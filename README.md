@@ -14,6 +14,7 @@ discover already existing shortcuts.
 * keycode -> key
 * duplicate keys
 * disable single keys
+* storage
 
 * detect and warn about shortcut collisions
 * support shortcut keys without id attribute
