@@ -6,24 +6,29 @@
 
 let overlays = (function () {
 
-  let overlays = new Map();
+  let overlays = {};
 
-  function has(id) {
-    return overlays.has(id);
+  function send() {
+    self.port.emit("overlays", overlays);
   }
 
-  function get(id) {
-    return overlays.get(id);
-  }
+  return {
+    has: function (id) {
+      return id in overlays;
+    },
 
-  function set(id, modifiers, keycode) {
-    overlays.set(id, {modifiers: modifiers, keycode: keycode});
-    //self.port.emit("new-overlay", shortcutData);
-  }
+    get: function (id) {
+      return overlays[id] || null;
+    },
 
-  function clear(id) {
-    overlays.delete(id);
-  }
+    set: function (id, modifiers, keycode) {
+      overlays[id] = {modifiers: modifiers, keycode: keycode};
+      send();
+    },
 
-  return {has: has, get: get, set: set, clear: clear};
+    clear: function (id) {
+      delete overlays[id];
+      send();
+    }
+  };
 })();

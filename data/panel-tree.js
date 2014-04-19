@@ -35,8 +35,7 @@ let tree = (function () {
     allKeys = new Map();
 
     for (let key of keys) {
-      let modifiers = new Set(key.modifiers || []);
-      key.combination = getCombination(modifiers, key.key, key.keycode);
+      key.combination = getCombination(key.modifiers || [], key.key, key.keycode);
       allKeys.set(key.id, key);
     }
 

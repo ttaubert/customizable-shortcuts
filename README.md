@@ -8,10 +8,15 @@ discover already existing shortcuts.
 
 # TODO
 
+* write tests
+* localization
+* backwards compat with old storage
+* keycode -> key
+* duplicate keys
+* disable single keys
+
 * detect and warn about shortcut collisions
 * support shortcut keys without id attribute
-* provide sync support for custom shortcuts
-* write tests
 
 # License
 

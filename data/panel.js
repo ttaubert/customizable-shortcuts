@@ -52,26 +52,26 @@ function isCompleteShortcut(event) {
 }
 
 function modifiersFromEvent(event) {
-  let modifiers = new Set();
+  let modifiers = [];
 
   if (event.ctrlKey) {
-    modifiers.add("control");
+    modifiers.push("control");
   }
 
   if (event.shiftKey) {
-    modifiers.add("shift");
+    modifiers.push("shift");
   }
 
   if (event.metaKey) {
-    modifiers.add("meta");
+    modifiers.push("meta");
   }
 
   if (event.altKey) {
-    modifiers.add("alt");
+    modifiers.push("alt");
   }
 
   if (event.keyCode in MODIFIER_KEYS) {
-    modifiers.add(MODIFIER_KEYS[event.keyCode]);
+    modifiers.push(MODIFIER_KEYS[event.keyCode]);
   }
 
   return modifiers;
@@ -94,13 +94,13 @@ function keyCodeFromEvent(event) {
 function getCombination(modifiers, key, keycode) {
   let parts = [];
 
-  if (modifiers.size) {
-    if (modifiers.has("accel")) {
-      modifiers.add(MODIFIER_KEYS[self.options.accelKey] || "control");
+  if (modifiers.length) {
+    if (modifiers.indexOf("accel") > -1) {
+      modifiers.push(MODIFIER_KEYS[self.options.accelKey] || "control");
     }
 
     for (let name in MODIFIER_NAMES) {
-      if (modifiers.has(name)) {
+      if (modifiers.indexOf(name) > -1) {
         parts.push(MODIFIER_NAMES[name] + "+");
       }
     }
