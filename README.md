@@ -19,7 +19,6 @@ discover already existing shortcuts.
 * update labels for keys without labels
 * hide broken shortcuts (hide, hide others)
 * Browser:NextTab/Browser:PrevTab
-* mac osx styles?
 * can't disable/override "Stop"?
 
 * detect and warn about shortcut collisions
