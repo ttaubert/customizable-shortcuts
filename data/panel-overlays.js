@@ -12,16 +12,17 @@ let overlays = (function () {
   self.port.on("overlays", ovs => overlays = ovs);
 
   return {
-    has: function (id) {
-      return id in overlays;
-    },
-
     get: function (id) {
       return overlays[id] || null;
     },
 
     set: function (id, modifiers, code, text) {
       overlays[id] = {modifiers: modifiers, code: code, text: text};
+      send();
+    },
+
+    disable: function (id) {
+      overlays[id] = {disabled: true};
       send();
     },
 

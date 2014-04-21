@@ -15,16 +15,17 @@
   font-weight: 700;
 }
 
+#tree > treechildren::-moz-tree-cell-text(disabled) {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
 #tree > treechildren::-moz-tree-cell-text(overridden) {
   text-decoration: line-through;
 }
 
 #tree > treechildren::-moz-tree-cell-text(container) {
   padding-left: 4px;
-}
-
-#tree > treechildren::-moz-tree-checkbox(checked) {
-  list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
 }
 
 button {

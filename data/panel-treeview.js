@@ -98,8 +98,8 @@ let treeview = (function () {
         }
 
         // Show the new shortcut if overridden.
-        if (overlays.has(key.id)) {
-          let overlay = overlays.get(key.id);
+        let overlay = overlays.get(key.id);
+        if (overlay && !overlay.disabled) {
           return getModifiersText(overlay.modifiers) + overlay.text;
         }
 
@@ -113,15 +113,20 @@ let treeview = (function () {
       },
 
       getCellProperties: function (idx, column) {
-        if (this.isContainer(idx) || !column.index) {
+        if (this.isContainer(idx)) {
           return "";
         }
 
         let props = [];
         let key = rows[idx].key;
 
-        if (overlays.has(key.id)) {
+        let overlay = overlays.get(key.id);
+        if (column.index && overlay && !overlay.disabled) {
           props.push("custom");
+        }
+
+        if (overlay && overlay.disabled) {
+          props.push("disabled");
         }
 
         /*if (Overlays.findByCustomShortcut(key.shortcut)) {

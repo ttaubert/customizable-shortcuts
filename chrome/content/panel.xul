@@ -20,7 +20,6 @@
           hidecolumnpicker="true" disableKeyNavigation="true">
 
       <treecols>
-        <!--treecol type="checkbox" editable="true" TODO /-->
         <treecol id="colAction" label="Action" flex="1" primary="true"/>
         <treecol id="colShortcut" label="Shortcut" editable="true" flex="1"/>
       </treecols>
@@ -31,6 +30,9 @@
     <hbox>
       <button id="edit" label="Edit" accesskey="e" disabled="true"/>
       <button id="reset" label="Reset" accesskey="r" disabled="true"/>
+      <spacer flex="1" />
+      <button id="disable" label="Disable" accesskey="r" disabled="true"/>
+      <button id="enable" label="Enable" accesskey="r" hidden="true"/>
     </hbox>
   </vbox>
 

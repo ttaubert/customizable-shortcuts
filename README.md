@@ -12,13 +12,15 @@ discover already existing shortcuts.
 * localization
 * backwards compat with old storage
 * duplicate keys
-* disable single keys
 * storage
 * use keytext labels (devtools)
 * don't handle key events while panel is open
 * support for shortcuts without keys / remove patch for bug #
 * update labels for keys without labels
 * hide broken shortcuts (hide, hide others)
+* Browser:NextTab/Browser:PrevTab
+* mac osx styles?
+* can't disable/override "Stop"?
 
 * detect and warn about shortcut collisions
 * support shortcut keys without id attribute
