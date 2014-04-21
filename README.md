@@ -8,21 +8,20 @@ discover already existing shortcuts.
 
 # TODO
 
-* write tests
-* localization
-* backwards compat with old storage
-* duplicate keys
-* storage
-* use keytext labels (devtools)
-* don't handle key events while panel is open
 * support for shortcuts without keys / remove patch for bug #
+* Browser:NextTab/Browser:PrevTab
+
+* localization
+* remove duplicate keys
+* use keytext labels (devtools)
+* can't disable/override "Stop"?
 * update labels for keys without labels
 * hide broken shortcuts (hide, hide others)
-* Browser:NextTab/Browser:PrevTab
-* can't disable/override "Stop"?
 
+* show overriden shortcuts
 * detect and warn about shortcut collisions
-* support shortcut keys without id attribute
+
+* fix disable/re-enable
 
 # License
 
