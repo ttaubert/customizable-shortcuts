@@ -37,20 +37,6 @@ function isModifier(key) {
   return key in MODIFIER_KEYS;
 }
 
-function isCompleteShortcut(event) {
-  for (let name of Object.keys(KeyEvent)) {
-    if (name.startsWith("DOM_VK_")) {
-      let key = KeyEvent[name];
-
-      if (!isModifier(key) && event.keyCode == key) {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
-
 function modifiersFromEvent(event) {
   let modifiers = [];
 
@@ -77,44 +63,13 @@ function modifiersFromEvent(event) {
   return modifiers;
 }
 
-function keyCodeFromEvent(event) {
-  for (let name of Object.keys(KeyEvent)) {
-    if (name.startsWith("DOM_VK_")) {
-      let key = KeyEvent[name];
-
-      if (!isModifier(key) && event.keyCode == key) {
-        return name.replace(/^DOM_/, "");
-      }
-    }
-  }
-
-  return null;
-}
-
-function getCombination(modifiers, key, keycode) {
+function getModifiersText(modifiers) {
   let parts = [];
 
-  if (modifiers.length) {
-    if (modifiers.indexOf("accel") > -1) {
-      modifiers.push(MODIFIER_KEYS[self.options.accelKey] || "control");
+  for (let name in MODIFIER_NAMES) {
+    if (modifiers.indexOf(name) > -1) {
+      parts.push(MODIFIER_NAMES[name] + "+");
     }
-
-    for (let name in MODIFIER_NAMES) {
-      if (modifiers.indexOf(name) > -1) {
-        parts.push(MODIFIER_NAMES[name] + "+");
-      }
-    }
-  }
-
-  if (key) {
-    parts.push(String.fromCharCode(key));
-  }
-
-  if (keycode) {
-    let keyName = keycode.replace(/^VK_/, "");
-    keyName = keyName[0] + keyName.substr(1).toLowerCase();
-    keyName = keyName.replace(/_[a-z]/i, str => str[1].toUpperCase());
-    parts.push(keyName);
   }
 
   return parts.join("");

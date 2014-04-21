@@ -20,8 +20,8 @@ let overlays = (function () {
       return overlays[id] || null;
     },
 
-    set: function (id, modifiers, keycode) {
-      overlays[id] = {modifiers: modifiers, keycode: keycode};
+    set: function (id, modifiers, code, text) {
+      overlays[id] = {modifiers: modifiers, code: code, text: text};
       send();
     },
 

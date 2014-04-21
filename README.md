@@ -11,10 +11,14 @@ discover already existing shortcuts.
 * write tests
 * localization
 * backwards compat with old storage
-* keycode -> key
 * duplicate keys
 * disable single keys
 * storage
+* use keytext labels (devtools)
+* don't handle key events while panel is open
+* support for shortcuts without keys / remove patch for bug #
+* update labels for keys without labels
+* hide broken shortcuts (hide, hide others)
 
 * detect and warn about shortcut collisions
 * support shortcut keys without id attribute

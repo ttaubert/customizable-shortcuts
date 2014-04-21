@@ -100,7 +100,7 @@ let treeview = (function () {
         // Show the new shortcut if overridden.
         if (overlays.has(key.id)) {
           let overlay = overlays.get(key.id);
-          return getCombination(overlay.modifiers, null, overlay.keycode);
+          return getModifiersText(overlay.modifiers) + overlay.text;
         }
 
         return key.combination;

@@ -19,12 +19,14 @@ let tree = (function () {
     event.preventDefault();
     event.stopPropagation();
 
-    let keycode = keyCodeFromEvent(event);
     let modifiers = modifiersFromEvent(event);
-    node.inputField.value = getCombination(modifiers, null, keycode);
+    node.inputField.value = getModifiersText(modifiers);
+    let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
 
-    if (isCompleteShortcut(event)) {
-      overlays.set(tree.selected, modifiers, keycode);
+    if (!isModifier(event.keyCode)) {
+      node.inputField.value += text;
+      overlays.set(tree.selected, modifiers, event.keyCode, text);
+
       node.stopEditing(true);
       buttons.update();
       node.focus();
@@ -34,8 +36,9 @@ let tree = (function () {
   self.port.on("keys", function (keys) {
     allKeys = new Map();
 
-    for (let key of keys) {
-      key.combination = getCombination(key.modifiers || [], key.key, key.keycode);
+    for (let id of Object.keys(keys)) {
+      let key = keys[id];
+      key.combination = getModifiersText(key.modifiers || []) + key.text;
       allKeys.set(key.id, key);
     }
 
