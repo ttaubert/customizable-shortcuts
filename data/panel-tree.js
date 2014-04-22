@@ -38,6 +38,7 @@ let tree = (function () {
 
     for (let id of Object.keys(keys)) {
       let key = keys[id];
+      key.id = id;
       key.combination = getModifiersText(key.modifiers || []) + key.text;
       allKeys.set(key.id, key);
     }
