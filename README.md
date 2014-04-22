@@ -1,7 +1,7 @@
 # Customizable Shortcuts
 
-This Firefox add-on allows the user to customize shortcuts. It also helps to
-discover already existing shortcuts.
+A Firefox add-on that allows to easily change most of the existing shortcuts.
+It additionally helps you discover new ones.
 
 - Screenshot: <http://bit.ly/e9WFSd>
 - Official site: <https://github.com/ttaubert/customizable-shortcuts>
