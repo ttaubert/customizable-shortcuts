@@ -8,9 +8,6 @@ discover already existing shortcuts.
 
 # TODO
 
-* support for shortcuts without keys / remove patch for bug #
-* Browser:NextTab/Browser:PrevTab
-
 * localization
 * remove duplicate keys
 * use keytext labels (devtools)
@@ -21,7 +18,7 @@ discover already existing shortcuts.
 * show overriden shortcuts
 * detect and warn about shortcut collisions
 
-* fix disable/re-enable
+* fix disable/re-enable add-on
 
 # License
 

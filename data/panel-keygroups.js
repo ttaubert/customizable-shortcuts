@@ -31,11 +31,12 @@ let keygroups = (function () {
 
     "Windows & Tabs": [
       "key_close", "key_closeWindow", "key_newNavigatorTab", "key_newNavigator",
-      "key_undoCloseTab", "key_undoCloseWindow", "key_selectTab1",
-      "key_selectTab2", "key_selectTab3", "key_selectTab4", "key_selectTab5",
-      "key_selectTab6", "key_selectTab7", "key_selectTab8", "key_selectLastTab",
-      "key_tabview", "key_nextTabGroup", "key_previousTabGroup",
-      "key_minimizeWindow", "key_showAllTabs"
+      "key_undoCloseTab", "key_undoCloseWindow",
+      "key_switchToNextTab", "key_switchToPrevTab",
+      "key_selectTab1", "key_selectTab2", "key_selectTab3", "key_selectTab4",
+      "key_selectTab5", "key_selectTab6", "key_selectTab7", "key_selectTab8",
+      "key_selectLastTab", "key_tabview", "key_nextTabGroup",
+      "key_previousTabGroup", "key_minimizeWindow", "key_showAllTabs"
     ],
 
     "History": [
