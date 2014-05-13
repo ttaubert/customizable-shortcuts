@@ -44,12 +44,18 @@ let buttons = (function () {
     overlays.clear(tree.selected);
     tree.invalidateSelectedRow();
     update();
+
+    // Disable any conflicting shortcuts and show a warning.
+    conflicts.findAndDisableByID(tree.selected);
   });
 
   enable.addEventListener("command", function () {
     overlays.clear(tree.selected);
     tree.invalidateSelectedRow();
     update();
+
+    // Disable any conflicting shortcuts and show a warning.
+    conflicts.findAndDisableByID(tree.selected);
   });
 
   disable.addEventListener("command", function () {
