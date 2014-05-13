@@ -14,11 +14,10 @@ It additionally helps you discover new ones.
 * can't disable/override "Stop"?
 * update labels for keys without labels
 * hide broken shortcuts (hide, hide others)
-
-* show overriden shortcuts
-* detect and warn about shortcut collisions
+* ignore edit result when shortcut didn't change
 
 * fix disable/re-enable add-on
+* fix select tab 1-8 and last tab shortcuts (on linux?)
 
 # License
 
