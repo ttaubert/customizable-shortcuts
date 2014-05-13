@@ -142,7 +142,8 @@ let treeview = (function () {
       isSorted: function () false,
       getImageSrc: function () {},
       getRowProperties: function () {},
-      getColumnProperties: function () {}
+      getColumnProperties: function () {},
+      cycleHeader: function () {}
     };
   }
 
