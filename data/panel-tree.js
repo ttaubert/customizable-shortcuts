@@ -54,21 +54,26 @@ let tree = (function () {
     let modifiers = modifiersFromEvent(event);
     node.inputField.value = getModifiersText(modifiers);
 
-    if (!isModifier(event.keyCode)) {
-      let conflict = findConflict(modifiers, event.keyCode);
-      if (conflict) {
-        notifications.add(conflict);
-        overlays.disable(conflict.id);
-      }
-
-      let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
-      node.inputField.value += text;
-      overlays.set(tree.selected, modifiers, event.keyCode, text);
-
-      node.stopEditing(true);
-      buttons.update();
-      node.focus();
+    // Bail out if the shortcut isn't complete yet.
+    if (isModifier(event.keyCode)) {
+      return;
     }
+
+    let conflict = findConflict(modifiers, event.keyCode);
+
+    // Disable any conflicting shortcuts and show a warning.
+    if (conflict) {
+      notifications.add(conflict);
+      overlays.disable(conflict.id);
+    }
+
+    let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
+    node.inputField.value += text;
+    overlays.set(tree.selected, modifiers, event.keyCode, text);
+
+    node.stopEditing(true);
+    buttons.update();
+    node.focus();
   }, true);
 
   self.port.on("keys", function (keys) {
