@@ -129,10 +129,6 @@ let treeview = (function () {
           props.push("disabled");
         }
 
-        /*if (Overlays.findByCustomShortcut(key.shortcut)) {
-          props.push("overridden"); // TODO
-        }*/
-
         return props.join(" ");
       },
 
