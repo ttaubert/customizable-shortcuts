@@ -20,10 +20,6 @@
   color: #aaa;
 }
 
-#tree > treechildren::-moz-tree-cell-text(overridden) {
-  text-decoration: line-through;
-}
-
 #tree > treechildren::-moz-tree-cell-text(container) {
   padding-left: 4px;
 }
