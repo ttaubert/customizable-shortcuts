@@ -51,6 +51,10 @@ let conflicts = (function () {
   }
 
   return {
+    find: function (id, modifiers, code) {
+      return findConflict(id, modifiers, code);
+    },
+
     findAndDisable: function (id, modifiers, code) {
       let conflict = findConflict(id, modifiers, code);
 

@@ -26,12 +26,18 @@ let tree = (function () {
       return;
     }
 
-    // Disable any conflicting shortcuts and show a warning.
-    conflicts.findAndDisable(tree.selected, modifiers, event.keyCode);
+    let id = tree.selected;
+    let conflict = conflicts.find(null, modifiers, event.keyCode);
 
-    let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
-    node.inputField.value += text;
-    overlays.set(tree.selected, modifiers, event.keyCode, text);
+    // Do nothing if the shortcut didn't change.
+    if (!conflict || conflict.id != id) {
+      // Disable any conflicting shortcuts and show a warning.
+      conflicts.findAndDisable(id, modifiers, event.keyCode);
+
+      let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
+      node.inputField.value += text;
+      overlays.set(id, modifiers, event.keyCode, text);
+    }
 
     node.stopEditing(true);
     buttons.update();
