@@ -31,8 +31,8 @@
       <button id="edit" label="Edit" accesskey="e" disabled="true"/>
       <button id="reset" label="Reset" accesskey="r" disabled="true"/>
       <spacer flex="1" />
-      <button id="disable" label="Disable" accesskey="r" disabled="true"/>
-      <button id="enable" label="Enable" accesskey="r" hidden="true"/>
+      <button id="disable" label="Disable" accesskey="d" disabled="true"/>
+      <button id="enable" label="Enable" accesskey="n" hidden="true"/>
     </hbox>
   </vbox>
 
