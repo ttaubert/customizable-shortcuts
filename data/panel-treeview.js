@@ -38,7 +38,13 @@ let treeview = (function () {
       },
 
       isEditable: function (idx, column) {
-        return column.index && !this.isContainer(idx);
+        if (column.index == 0 || this.isContainer(idx)) {
+          return false;
+        }
+
+        let key = rows[idx].key;
+        let overlay = overlays.get(key.id);
+        return !overlay || !overlay.disabled;
       },
 
       isContainerOpen: function (idx) {
