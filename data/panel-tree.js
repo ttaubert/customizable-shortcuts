@@ -10,6 +10,38 @@ let tree = (function () {
   let node = unsafeWindow.document.getElementById("tree");
   node.addEventListener("select", buttons.update);
 
+  function sameModifiers(m1, m2) {
+    if (m1.length != m2.length) {
+      return false;
+    }
+
+    m2 = new Set(m2);
+
+    for (let modifier of m1) {
+      if (!m2.has(modifier)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function findConflict(modifiers, code) {
+    for (let [id, key] of allKeys) {
+      let overlay = overlays.get(id) || key;
+
+      if (!overlay || overlay.disabled) {
+        continue;
+      }
+
+      if (sameModifiers(overlay.modifiers, modifiers) && overlay.code == code) {
+        return key;
+      }
+    }
+
+    return null;
+  }
+
   addEventListener("keydown", function (event) {
     // Ignore events when not in edit mode.
     if (!node.editingColumn) {
@@ -21,9 +53,15 @@ let tree = (function () {
 
     let modifiers = modifiersFromEvent(event);
     node.inputField.value = getModifiersText(modifiers);
-    let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
 
     if (!isModifier(event.keyCode)) {
+      let conflict = findConflict(modifiers, event.keyCode);
+      if (conflict) {
+        notifications.add(conflict);
+        overlays.disable(conflict.id);
+      }
+
+      let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
       node.inputField.value += text;
       overlays.set(tree.selected, modifiers, event.keyCode, text);
 

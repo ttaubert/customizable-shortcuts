@@ -11,6 +11,8 @@
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <vbox flex="1">
+    <notificationbox id="notifications"/>
+
     <hbox>
       <textbox id="filter" flex="1" type="search"
                placeholder="Search for shortcut"/>
