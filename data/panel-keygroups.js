@@ -36,17 +36,18 @@ let keygroups = (function () {
       "key_selectTab1", "key_selectTab2", "key_selectTab3", "key_selectTab4",
       "key_selectTab5", "key_selectTab6", "key_selectTab7", "key_selectTab8",
       "key_selectLastTab", "key_tabview", "key_nextTabGroup", "key_prevTabGroup",
-      "key_previousTabGroup", "key_minimizeWindow", "key_showAllTabs"
+      "key_previousTabGroup", "key_minimizeWindow", "key_showAllTabs",
+      "key_privatebrowsing",
     ],
 
     "Bookmarks & History": [
       "addBookmarkAsKb", "viewBookmarksSidebarKb", "viewBookmarksSidebarWinKb",
-      "manBookmarkKb", "bookmarkAllTabsKb", "key_gotoHistory", "showAllHistoryKb"
+      "manBookmarkKb", "bookmarkAllTabsKb", "key_gotoHistory",
+      "showAllHistoryKb", "key_sanitize", "key_sanitize_mac"
     ],
 
     "Tools": [
-      "key_openDownloads", "key_openAddons", "key_privatebrowsing",
-      "key_sanitize", "key_sanitize_mac"
+      "key_openDownloads", "key_openAddons", "key_preferencesCmdMac"
     ],
 
     "Developer Tools": [
@@ -72,6 +73,8 @@ let keygroups = (function () {
       }
 
       if (group.length) {
+        // Sort by label.
+        group.sort((a, b) => a.label > b.label ? 1 : a.label < b.label ? -1 : 0);
         retval.set(name, group);
       }
     }
