@@ -10,8 +10,11 @@ It additionally helps you discover new ones.
 
 * firefox 32 issues
 * linux super key issues
-* test on real windows + linux
+* meta-alt-L produces wrong combination
 * fix select tab 1-8 and last tab shortcuts (on linux?)
+
+* Pressing Alt key on Windows removes the Meta key
+
 
 # TODO
 

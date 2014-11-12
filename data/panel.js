@@ -4,7 +4,7 @@
 
 "use strict";
 
-const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 224: "meta"};
+const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 91: "meta", 92: "meta", 224: "meta"};
 const MODIFIER_NAMES = {control: "Ctrl", meta: "Meta", shift: "Shift", alt: "Alt"};
 
 // Notify the parent that we're ready.
