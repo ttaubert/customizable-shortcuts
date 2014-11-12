@@ -16,7 +16,7 @@ let keygroups = (function () {
     "Current Page": [
       /*"End", "Home", "F6", "Shift+F6",*/ "key_viewInfo", "key_viewSource",
       "printKb", "key_savePage", "key_fullZoomEnlarge", "key_fullZoomReduce",
-      "key_fullZoomReset"
+      "key_fullZoomReset", "key_switchTextDirection"
     ],
 
     "Editing": [
@@ -26,7 +26,7 @@ let keygroups = (function () {
 
     "Search": [
       "key_find", "key_findAgain", "key_findPrevious", "key_search",
-      "key_search2"
+      "key_search2", "key_findSelection"
     ],
 
     "Windows & Tabs": [
@@ -35,17 +35,13 @@ let keygroups = (function () {
       "key_switchToNextTab", "key_switchToPrevTab",
       "key_selectTab1", "key_selectTab2", "key_selectTab3", "key_selectTab4",
       "key_selectTab5", "key_selectTab6", "key_selectTab7", "key_selectTab8",
-      "key_selectLastTab", "key_tabview", "key_nextTabGroup",
+      "key_selectLastTab", "key_tabview", "key_nextTabGroup", "key_prevTabGroup",
       "key_previousTabGroup", "key_minimizeWindow", "key_showAllTabs"
     ],
 
-    "History": [
-      "key_gotoHistory", "showAllHistoryKb"
-    ],
-
-    "Bookmarks": [
+    "Bookmarks & History": [
       "addBookmarkAsKb", "viewBookmarksSidebarKb", "viewBookmarksSidebarWinKb",
-      "manBookmarkKb", "bookmarkAllTabsKb"
+      "manBookmarkKb", "bookmarkAllTabsKb", "key_gotoHistory", "showAllHistoryKb"
     ],
 
     "Tools": [
@@ -57,7 +53,7 @@ let keygroups = (function () {
       "key_webconsole", "key_errorConsole", "key_jsdebugger", "key_inspector",
       "key_styleeditor", "key_jsprofiler", "key_devToolbar", "key_responsiveUI",
       "key_scratchpad", "key_netmonitor", "key_devToolboxMenuItemF12",
-      "key_browserConsole", "key_devToolboxMenuItem"
+      "key_browserConsole", "key_devToolboxMenuItem", "key_webide"
     ]
   };
 
