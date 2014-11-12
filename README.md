@@ -3,6 +3,7 @@
 A Firefox add-on that allows to easily change most of the existing shortcuts.
 It additionally helps you discover new ones.
 
+- Page on addons.mozilla.org: <https://addons.mozilla.org/firefox/addon/customizable-shortcuts/>
 - Screenshot: <http://bit.ly/e9WFSd>
 - Official site: <https://addons.mozilla.org/firefox/addon/customizable-shortcuts/>
 
