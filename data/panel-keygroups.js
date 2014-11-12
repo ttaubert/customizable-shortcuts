@@ -10,7 +10,7 @@ let keygroups = (function () {
     "Navigation": [
       "goBackKb", "goBackKb2", "goForwardKb", "goForwardKb2", "goHome",
       "openFileKb", /*"F5",*/ "key_reload", /*"Ctrl+F5", Ctrl+Shift+R,*/
-      "key_stop", "key_stop_mac", "focusURLBar"
+      "key_stop", "key_stop_mac", "focusURLBar", "focusURLBar2"
     ],
 
     "Current Page": [
