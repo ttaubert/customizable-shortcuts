@@ -27,15 +27,22 @@ const gTree = (function () {
     }
 
     let id = gTree.selected;
+    let hotkey = gHotKeys.get(id);
     let conflict = gConflicts.find(null, modifiers, event.key);
 
-    // Do nothing if the shortcut didn't change.
+    // Do nothing if the overlay's shortcut didn't change.
     if (!conflict || conflict.id != id) {
       // Disable any conflicting shortcuts and show a warning.
       gConflicts.findAndDisable(id, modifiers, event.key);
 
-      // Store the new overlay.
-      gOverlays.set(id, modifiers, event.key);
+      // Check if the shortcut was manually reset to its default value.
+      if (hotkey.modifiers == modifiers && hotkey.key == event.key) {
+        // Remove leftovers.
+        gOverlays.clear(id);
+      } else {
+        // Store the new overlay.
+        gOverlays.set(id, modifiers, event.key);
+      }
     }
 
     node.stopEditing(true);
