@@ -33,3 +33,7 @@ self.port.on("focus", function () {
 
 // Render the tree on first show.
 self.port.once("focus", gTree.filter);
+
+let gPlatform;
+// Wait for the platform string.
+self.port.once("platform", platform => gPlatform = platform);

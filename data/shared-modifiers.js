@@ -29,7 +29,7 @@ const gModifiers = (function () {
         modifiers |= MODIFIER_SHIFT;
       }
 
-      if (event.getModifierState("Meta")) {
+      if (event.getModifierState("Meta") || event.getModifierState("OS")) {
         modifiers |= MODIFIER_META;
       }
 
@@ -73,19 +73,30 @@ const gModifiers = (function () {
       let parts = [];
 
       if (modifiers & MODIFIER_CONTROL) {
-        parts.push("Ctrl+");
+        parts.push("Ctrl + ");
       }
 
       if (modifiers & MODIFIER_META) {
-        parts.push("Meta+");
+        let text = "";
+        if (gPlatform == "darwin") {
+          text = "Cmd";
+        } else if (gPlatform == "linux") {
+          text = "Super";
+        } else if (gPlatform == "winnt") {
+          text = "Win";
+        }
+
+        if (text) {
+          parts.push(`${text} + `);
+        }
       }
 
       if (modifiers & MODIFIER_SHIFT) {
-        parts.push("Shift+");
+        parts.push("Shift + ");
       }
 
       if (modifiers & MODIFIER_ALT) {
-        parts.push("Alt+");
+        parts.push("Alt + ");
       }
 
       return parts.join("");
