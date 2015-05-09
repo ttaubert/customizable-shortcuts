@@ -35,6 +35,7 @@
       <spacer flex="1" />
       <button id="disable" label="Disable" accesskey="d" disabled="true"/>
       <button id="enable" label="Enable" accesskey="n" hidden="true"/>
+      <button id="close" label="Close" accesskey="c"/>
     </hbox>
   </vbox>
 

@@ -8,6 +8,7 @@ let buttons = (function () {
 
   let edit = document.getElementById("edit");
   let reset = document.getElementById("reset");
+  let close = document.getElementById("close");
   let enable = document.getElementById("enable");
   let disable = document.getElementById("disable");
 
@@ -35,6 +36,10 @@ let buttons = (function () {
       edit.disabled = reset.disabled = true;
     }
   }
+
+  close.addEventListener("command", function () {
+    self.port.emit("hide");
+  });
 
   edit.addEventListener("command", function () {
     tree.editSelectedRow();
