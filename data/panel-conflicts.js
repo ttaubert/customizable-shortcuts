@@ -4,69 +4,50 @@
 
 "use strict";
 
-let conflicts = (function () {
+const gConflicts = (function () {
 
   let box = document.getElementById("notifications");
 
-  function sameModifiers(m1, m2) {
-    if (m1.length != m2.length) {
-      return false;
-    }
-
-    m2 = new Set(m2);
-
-    for (let modifier of m1) {
-      if (!m2.has(modifier)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  function findConflict(id, modifiers, code) {
-    return keys.find((kid, key) => {
+  function findConflict(id, modifiers, key) {
+    return gHotKeys.find(hotkey => {
       // Skip the original key.
-      if (kid == id) {
+      if (hotkey.id == id) {
         return false;
       }
 
-      let overlay = overlays.get(kid) || key;
-
+      let overlay = gOverlays.get(hotkey.id) || hotkey;
       if (!overlay || overlay.disabled) {
         return false;
       }
 
-      if (sameModifiers(overlay.modifiers, modifiers) && overlay.code == code) {
-        return true;
-      }
+      return overlay.modifiers == modifiers && overlay.key == key;
     });
   }
 
   function showWarning(text) {
     box.removeAllNotifications();
     box.appendNotification(
-      "\"" + text + "\" has been disabled due to a conflict.",
+      `"${text}" has been disabled due to a conflict.`,
       null, null, box.PRIORITY_WARNING_LOW, null);
   }
 
   return {
-    find: function (id, modifiers, code) {
-      return findConflict(id, modifiers, code);
+    find(id, modifiers, key) {
+      return findConflict(id, modifiers, key);
     },
 
-    findAndDisable: function (id, modifiers, code) {
-      let conflict = findConflict(id, modifiers, code);
+    findAndDisable(id, modifiers, key) {
+      let conflict = findConflict(id, modifiers, key);
 
       if (conflict) {
         showWarning(conflict.label);
-        overlays.disable(conflict.id);
+        gOverlays.disable(conflict.id);
       }
     },
 
-    findAndDisableByID: function (id) {
-      let key = keys.get(id);
-      this.findAndDisable(id, key.modifiers, key.code);
+    findAndDisableByID(id) {
+      let hotkey = gHotKeys.get(id);
+      this.findAndDisable(id, hotkey.modifiers, hotkey.key);
     }
   };
 })();

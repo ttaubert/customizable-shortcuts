@@ -3,7 +3,7 @@
   "license": "MPL 2.0",
   "author": "Tim Taubert <tim@timtaubert.de>",
   "url": "https://github.com/ttaubert/customizable-shortcuts",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "fullName": "Customizable Shortcuts",
   "id": "customizable-shortcuts@timtaubert.de",
   "description": "Allows to easily change most of the existing shortcuts in Firefox",

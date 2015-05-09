@@ -4,7 +4,7 @@
 
 "use strict";
 
-let buttons = (function () {
+const gButtons = (function () {
 
   let edit = document.getElementById("edit");
   let reset = document.getElementById("reset");
@@ -18,8 +18,8 @@ let buttons = (function () {
     disable.hidden = false;
     enable.hidden = true;
 
-    let id = tree.selected;
-    let overlay = overlays.get(id);
+    let id = gTree.selected;
+    let overlay = gOverlays.get(id);
 
     if (id) {
       edit.disabled = false;
@@ -42,32 +42,32 @@ let buttons = (function () {
   });
 
   edit.addEventListener("command", function () {
-    tree.editSelectedRow();
+    gTree.editSelectedRow();
   });
 
   reset.addEventListener("command", function () {
-    overlays.clear(tree.selected);
-    tree.invalidateSelectedRow();
+    gOverlays.clear(gTree.selected);
+    gTree.invalidateSelectedRow();
     update();
 
     // Disable any conflicting shortcuts and show a warning.
-    conflicts.findAndDisableByID(tree.selected);
+    gConflicts.findAndDisableByID(gTree.selected);
   });
 
   enable.addEventListener("command", function () {
-    overlays.clear(tree.selected);
-    tree.invalidateSelectedRow();
+    gOverlays.clear(gTree.selected);
+    gTree.invalidateSelectedRow();
     update();
 
     // Disable any conflicting shortcuts and show a warning.
-    conflicts.findAndDisableByID(tree.selected);
+    gConflicts.findAndDisableByID(gTree.selected);
   });
 
   disable.addEventListener("command", function () {
-    overlays.disable(tree.selected);
-    tree.invalidateSelectedRow();
+    gOverlays.disable(gTree.selected);
+    gTree.invalidateSelectedRow();
     update();
   });
 
-  return {update: update};
+  return {update};
 })();

@@ -4,7 +4,7 @@
 
 "use strict";
 
-let keygroups = (function () {
+const gKeyGroups = (function () {
 
   const KEY_GROUPS = {
     "Navigation": [

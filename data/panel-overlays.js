@@ -4,29 +4,33 @@
 
 "use strict";
 
-let overlays = (function () {
+const gOverlays = (function () {
 
   let overlays = {};
 
-  function send() self.port.emit("overlays", overlays);
+  function send() {
+    self.port.emit("overlays", overlays);
+  }
+
+  // Listen for updates from the parent.
   self.port.on("overlays", ovs => overlays = ovs);
 
   return {
-    get: function (id) {
+    get(id) {
       return overlays[id] || null;
     },
 
-    set: function (id, modifiers, code, text) {
-      overlays[id] = {modifiers: modifiers, code: code, text: text};
+    set(id, modifiers, key) {
+      overlays[id] = {modifiers, key};
       send();
     },
 
-    disable: function (id) {
+    disable(id) {
       overlays[id] = {disabled: true};
       send();
     },
 
-    clear: function (id) {
+    clear(id) {
       delete overlays[id];
       send();
     }

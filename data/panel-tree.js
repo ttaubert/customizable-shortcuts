@@ -4,10 +4,10 @@
 
 "use strict";
 
-let tree = (function () {
+const gTree = (function () {
 
   let node = unsafeWindow.document.getElementById("tree");
-  node.addEventListener("select", buttons.update);
+  node.addEventListener("select", gButtons.update);
 
   addEventListener("keydown", function (event) {
     // Ignore events when not in edit mode.
@@ -18,34 +18,30 @@ let tree = (function () {
     event.preventDefault();
     event.stopPropagation();
 
-    let modifiers = modifiersFromEvent(event);
-    node.inputField.value = getModifiersText(modifiers);
+    let modifiers = gModifiers.fromEvent(event);
+    node.inputField.value = gModifiers.toText(modifiers);
 
     // Bail out if the shortcut isn't complete yet.
-    if (isModifier(event.keyCode)) {
+    if (gModifiers.isModifier(event.key)) {
       return;
     }
 
-    let id = tree.selected;
-    let conflict = conflicts.find(null, modifiers, event.keyCode);
+    let id = gTree.selected;
+    let conflict = gConflicts.find(null, modifiers, event.key);
 
     // Do nothing if the shortcut didn't change.
     if (!conflict || conflict.id != id) {
       // Disable any conflicting shortcuts and show a warning.
-      conflicts.findAndDisable(id, modifiers, event.keyCode);
+      gConflicts.findAndDisable(id, modifiers, event.key);
 
-      let text = event.key[0].toUpperCase() + event.key.slice(1).toLowerCase();
-      node.inputField.value += text;
-      overlays.set(id, modifiers, event.keyCode, text);
+      // Store the new overlay.
+      gOverlays.set(id, modifiers, event.key);
     }
 
     node.stopEditing(true);
-    buttons.update();
+    gButtons.update();
     node.focus();
   }, true);
-
-  // Render the tree as soon as we received all keys.
-  keys.addListener(() => tree.filter());
 
   return {
     get selected() {
@@ -54,21 +50,21 @@ let tree = (function () {
       return node.view.getCellValue(row, column);
     },
 
-    filter: function (term) {
-      node.view = treeview.create(keys.filter(key => {
-        let label = key.label.toLowerCase();
-        let combination = key.combination.toLowerCase();
-        return !term || label.contains(term) || combination.contains(term);
+    filter(term) {
+      node.view = gTreeView.create(gHotKeys.filter(hotkey => {
+        return !term ||
+               hotkey.label.toLowerCase().indexOf(term) > -1 ||
+               gHotKeys.getCombination(hotkey).toLowerCase().indexOf(term) > -1;
       }));
     },
 
-    editSelectedRow: function () {
+    editSelectedRow() {
       let row = node.currentIndex;
       let column = node.columns.getLastColumn();
       node.startEditing(row, column);
     },
 
-    invalidateSelectedRow: function () {
+    invalidateSelectedRow() {
       let row = node.currentIndex;
       node.treeBoxObject.invalidateRow(row);
     }

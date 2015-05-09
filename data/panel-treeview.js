@@ -4,7 +4,7 @@
 
 "use strict";
 
-let treeview = (function () {
+const gTreeView = (function () {
 
   function buildRows(groups) {
     let rows = [];
@@ -14,7 +14,7 @@ let treeview = (function () {
 
       if (group.open) {
         rows.push(...[
-          {type: "key", key: key, parentIdx: parentIdx} for (key of group.keys)
+          {type: "key", key, parentIdx} for (key of group.keys)
         ]);
       }
     }
@@ -25,7 +25,7 @@ let treeview = (function () {
   function create(keys) {
     let groups = [
       {type: "group", name: gname, parentIdx: -1, open: true, keys: gkeys}
-      for ([gname, gkeys] of keygroups.group(keys))
+      for ([gname, gkeys] of gKeyGroups.group(keys))
     ];
 
     let rows = buildRows(groups);
@@ -33,33 +33,33 @@ let treeview = (function () {
     return {
       get rowCount() rows.length,
 
-      isContainer: function (idx) {
+      isContainer(idx) {
         return rows[idx].type == "group";
       },
 
-      isEditable: function (idx, column) {
+      isEditable(idx, column) {
         if (column.index == 0 || this.isContainer(idx)) {
           return false;
         }
 
         let key = rows[idx].key;
-        let overlay = overlays.get(key.id);
+        let overlay = gOverlays.get(key.id);
         return !overlay || !overlay.disabled;
       },
 
-      isContainerOpen: function (idx) {
+      isContainerOpen(idx) {
         return rows[idx].open;
       },
 
-      getLevel: function (idx) {
+      getLevel(idx) {
         return +!this.isContainer(idx);
       },
 
-      getParentIndex: function (idx) {
+      getParentIndex(idx) {
         return rows[idx].parentIdx;
       },
 
-      toggleOpenState: function (idx) {
+      toggleOpenState(idx) {
         let row = rows[idx];
 
         let numRows = -row.keys.length;
@@ -72,7 +72,7 @@ let treeview = (function () {
         this.treebox.invalidateRow(idx);
       },
 
-      hasNextSibling: function (idx, after) {
+      hasNextSibling(idx, after) {
         let level = this.getLevel(idx);
         for (let t = after + 1; t < this.rowCount; t++) {
           let nextLevel = this.getLevel(t);
@@ -86,7 +86,7 @@ let treeview = (function () {
         }
       },
 
-      getCellText: function (idx, column) {
+      getCellText(idx, column) {
         let row = rows[idx];
 
         if (!row) {
@@ -104,21 +104,21 @@ let treeview = (function () {
         }
 
         // Show the new shortcut if overridden.
-        let overlay = overlays.get(key.id);
+        let overlay = gOverlays.get(key.id);
         if (overlay && !overlay.disabled) {
-          return getModifiersText(overlay.modifiers) + overlay.text;
+          key = overlay;
         }
 
-        return key.combination;
+        return gHotKeys.getCombination(key);
       },
 
-      getCellValue: function (idx, column) {
+      getCellValue(idx, column) {
         if (!this.isContainer(idx)) {
           return rows[idx].key.id;
         }
       },
 
-      getCellProperties: function (idx, column) {
+      getCellProperties(idx, column) {
         if (this.isContainer(idx)) {
           return "";
         }
@@ -126,7 +126,7 @@ let treeview = (function () {
         let props = [];
         let key = rows[idx].key;
 
-        let overlay = overlays.get(key.id);
+        let overlay = gOverlays.get(key.id);
         if (column.index && overlay && !overlay.disabled) {
           props.push("custom");
         }
@@ -138,20 +138,20 @@ let treeview = (function () {
         return props.join(" ");
       },
 
-      setTree: function (treebox) {
+      setTree(treebox) {
         this.treebox = treebox;
       },
 
-      isContainerEmpty: function () false,
-      setCellText: function () {},
-      isSeparator: function () false,
-      isSorted: function () false,
-      getImageSrc: function () {},
-      getRowProperties: function () {},
-      getColumnProperties: function () {},
-      cycleHeader: function () {}
+      isContainerEmpty() { return false; },
+      setCellText() {},
+      isSeparator() { return false; },
+      isSorted() { return false; },
+      getImageSrc() {},
+      getRowProperties() {},
+      getColumnProperties() {},
+      cycleHeader() {}
     };
   }
 
-  return {create: create};
+  return {create};
 })();
