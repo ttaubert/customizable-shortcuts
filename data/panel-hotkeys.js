@@ -24,7 +24,7 @@ const gHotKeys = (function () {
     getCombination(hotkey) {
       return gModifiers.toText(hotkey.modifiers) +
              hotkey.key[0].toUpperCase() +
-             hotkey.key.slice(1).toLowerCase();
+             hotkey.key.slice(1);
     },
 
     find(fun) {
