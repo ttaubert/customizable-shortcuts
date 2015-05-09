@@ -36,8 +36,7 @@ const gKeyGroups = (function () {
       "key_selectTab1", "key_selectTab2", "key_selectTab3", "key_selectTab4",
       "key_selectTab5", "key_selectTab6", "key_selectTab7", "key_selectTab8",
       "key_selectLastTab", "key_tabview", "key_nextTabGroup", "key_prevTabGroup",
-      "key_previousTabGroup", "key_minimizeWindow", "key_showAllTabs",
-      "key_privatebrowsing",
+      "key_minimizeWindow", "key_showAllTabs", "key_privatebrowsing",
     ],
 
     "Bookmarks & History": [
