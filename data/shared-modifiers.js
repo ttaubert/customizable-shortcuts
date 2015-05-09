@@ -5,7 +5,7 @@
 "use strict";
 
 const gModifiers = (function () {
-  const MODIFIER_NAMES = new Set(["Control", "Shift", "Meta", "Alt"]);
+  const MODIFIER_NAMES = new Set(["Control", "Shift", "Meta", "Alt", "OS"]);
   const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 91: "meta", 92: "meta", 224: "meta"};
 
   const MODIFIER_CONTROL = 1;
