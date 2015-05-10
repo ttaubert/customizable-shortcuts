@@ -74,6 +74,10 @@ const gTree = (function () {
     invalidateSelectedRow() {
       let row = node.currentIndex;
       node.treeBoxObject.invalidateRow(row);
+    },
+
+    stopEditing() {
+      node.stopEditing(false);
     }
   };
 })();

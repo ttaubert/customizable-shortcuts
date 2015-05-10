@@ -27,12 +27,15 @@ addEventListener("keydown", function (event) {
 });
 
 // Focus the window whenever the panel is shown.
-self.port.on("focus", function () {
+self.port.on("showing", function () {
   window.focus();
 });
 
+// Stop editing whenever the panel is hidden.
+self.port.on("hiding", gTree.stopEditing);
+
 // Render the tree on first show.
-self.port.once("focus", gTree.filter);
+self.port.once("showing", gTree.filter);
 
 let gPlatform;
 // Wait for the platform string.
