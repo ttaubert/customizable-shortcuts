@@ -14,16 +14,25 @@ textbox.addEventListener("command", function (event) {
   gTree.filter(textbox.value.replace(/^\s+||s+$/, "").toLowerCase());
 });
 
+// When the non-empty search box is focused and the user hits ESC
+// then don't close the panel but just empty the search box.
 textbox.addEventListener("keydown", function (event) {
   if (event.keyCode == KeyEvent.DOM_VK_ESCAPE && textbox.value != "") {
     event.stopPropagation();
   }
 }, true);
 
+// Close the panel with ESC.
 addEventListener("keydown", function (event) {
   if (event.keyCode == KeyEvent.DOM_VK_ESCAPE) {
     self.port.emit("hide");
   }
+});
+
+// Block mouse events from bubbling up to the parent as that listens for
+// any clicks and will close the panel if it detects outside clicks.
+addEventListener("mousedown", function (event) {
+  event.stopPropagation();
 });
 
 // Focus the window whenever the panel is shown.

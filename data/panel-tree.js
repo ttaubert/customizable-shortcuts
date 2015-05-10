@@ -9,6 +9,29 @@ const gTree = (function () {
   let node = unsafeWindow.document.getElementById("tree");
   node.addEventListener("select", gButtons.update);
 
+  // Listen for blur events to determine when to close the panel. We take care
+  // of that manually to support Alt+ and Super+ shortcuts on Linux. Some
+  // window managers steal focus immediately and would hide the panel.
+  addEventListener("blur", function (event) {
+    // Don't propagate the event to the tree. We want to continue
+    // editing if the edit mode's input field was the active element.
+    if (event.originalTarget == node.inputField.inputField) {
+      event.stopPropagation();
+    }
+
+    // Wait a tick.
+    setTimeout(() => {
+      if (!document.hasFocus()) {
+        // If the panel isn't focused but another window or app, hide it.
+        self.port.emit("hide");
+      } else if (document.activeElement != node.inputField.inputField) {
+        // If the panel is still focused but the active element
+        // isn't the edit mode's input field then stop editing.
+        gTree.stopEditing();
+      }
+    });
+  }, true);
+
   addEventListener("keydown", function (event) {
     // Ignore events when not in edit mode.
     if (!node.editingColumn) {
