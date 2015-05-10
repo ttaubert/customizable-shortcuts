@@ -13,6 +13,20 @@ const gModifiers = (function () {
   const MODIFIER_SHIFT   = 4;
   const MODIFIER_ALT     = 8;
 
+  function getModifierState(event, modifier) {
+    if (event.getModifierState(modifier)) {
+      return true;
+    }
+
+    // getModifierState() seems to always return false on Linux when only a
+    // single modifier key is pressed. Work around by checking the keyCode.
+    if (gPlatform == "linux") {
+      return (MODIFIER_KEYS[event.keyCode] || "") == modifier.toLowerCase();
+    }
+
+    return false;
+  }
+
   return {
     isModifier(key) {
       return MODIFIER_NAMES.has(key);
@@ -21,19 +35,19 @@ const gModifiers = (function () {
     fromEvent(event) {
       let modifiers = 0;
 
-      if (event.getModifierState("Control") || event.getModifierState("AltGraph")) {
+      if (getModifierState(event, "Control") || getModifierState(event, "AltGraph")) {
         modifiers |= MODIFIER_CONTROL;
       }
 
-      if (event.getModifierState("Shift")) {
+      if (getModifierState(event, "Shift")) {
         modifiers |= MODIFIER_SHIFT;
       }
 
-      if (event.getModifierState("Meta") || event.getModifierState("OS")) {
+      if (getModifierState(event, "Meta") || getModifierState(event, "OS")) {
         modifiers |= MODIFIER_META;
       }
 
-      if (event.getModifierState("Alt") || event.getModifierState("AltGraph")) {
+      if (getModifierState(event, "Alt") || getModifierState(event, "AltGraph")) {
         modifiers |= MODIFIER_ALT;
       }
 
