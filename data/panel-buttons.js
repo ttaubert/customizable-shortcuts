@@ -48,6 +48,7 @@ const gButtons = (function () {
   reset.addEventListener("command", function () {
     gOverlays.clear(gTree.selected);
     gTree.invalidateSelectedRow();
+    gTree.stopEditing();
     update();
 
     // Disable any conflicting shortcuts and show a warning.
@@ -66,6 +67,7 @@ const gButtons = (function () {
   disable.addEventListener("command", function () {
     gOverlays.disable(gTree.selected);
     gTree.invalidateSelectedRow();
+    gTree.stopEditing();
     update();
   });
 

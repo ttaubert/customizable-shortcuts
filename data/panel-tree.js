@@ -89,9 +89,11 @@ const gTree = (function () {
     },
 
     editSelectedRow() {
-      let row = node.currentIndex;
-      let column = node.columns.getLastColumn();
-      node.startEditing(row, column);
+      if (!node.editingColumn) {
+        let row = node.currentIndex;
+        let column = node.columns.getLastColumn();
+        node.startEditing(row, column);
+      }
     },
 
     invalidateSelectedRow() {
