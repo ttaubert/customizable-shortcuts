@@ -5,7 +5,7 @@
 "use strict";
 
 const gModifiers = (function () {
-  const MODIFIER_NAMES = new Set(["Control", "Shift", "Meta", "Alt", "OS"]);
+  const MODIFIER_NAMES = new Set(["Control", "Shift", "Meta", "Alt", "OS", "AltGraph"]);
   const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 91: "meta", 92: "meta", 224: "meta"};
 
   const MODIFIER_CONTROL = 1;
@@ -21,7 +21,7 @@ const gModifiers = (function () {
     fromEvent(event) {
       let modifiers = 0;
 
-      if (event.getModifierState("Control")) {
+      if (event.getModifierState("Control") || event.getModifierState("AltGraph")) {
         modifiers |= MODIFIER_CONTROL;
       }
 
@@ -33,7 +33,7 @@ const gModifiers = (function () {
         modifiers |= MODIFIER_META;
       }
 
-      if (event.getModifierState("Alt")) {
+      if (event.getModifierState("Alt") || event.getModifierState("AltGraph")) {
         modifiers |= MODIFIER_ALT;
       }
 
