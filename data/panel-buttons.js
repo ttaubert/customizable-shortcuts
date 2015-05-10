@@ -33,7 +33,7 @@ const gButtons = (function () {
     if (overlay && overlay.disabled) {
       enable.hidden = enable.disabled = false;
       disable.hidden = disable.disabled = true;
-      edit.disabled = reset.disabled = true;
+      edit.disabled = true;
     }
   }
 
