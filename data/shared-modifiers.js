@@ -14,6 +14,11 @@ const gModifiers = (function () {
   const MODIFIER_ALT     = 8;
 
   function getModifierState(event, modifier) {
+    // Pressing Alt/Option on OS X shouldn't yield true for AltGraph.
+    if (gPlatform == "darwin" && modifier == "AltGraph") {
+      return false;
+    }
+
     if (event.getModifierState(modifier)) {
       return true;
     }
