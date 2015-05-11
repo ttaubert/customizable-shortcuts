@@ -6,11 +6,11 @@ shortcuts. It might also help you discover new ones.
 
 # Screenshots
 
-<a href="http://i.imgur.com/7ddKaQQ.png">
-  <img src="http://i.imgur.com/7ddKaQQ.png" width="49%" alt="Screenshot 1" />
+<a href="http://i.imgur.com/GVnR3Bj.png">
+  <img src="http://i.imgur.com/GVnR3Bj.png" width="49%" alt="Screenshot 1" />
 </a>
-<a href="http://i.imgur.com/eiujmHu.png">
-  <img src="http://i.imgur.com/eiujmHu.png" width="49%" alt="Screenshot 2" />
+<a href="http://i.imgur.com/AyGSUf9.png">
+  <img src="http://i.imgur.com/AyGSUf9.png" width="49%" alt="Screenshot 2" />
 </a>
 
 # TODO
