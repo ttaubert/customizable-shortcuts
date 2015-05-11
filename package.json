@@ -7,5 +7,6 @@
   "fullName": "Customizable Shortcuts",
   "id": "customizable-shortcuts@timtaubert.de",
   "description": "Allows to easily change most of the existing shortcuts in Firefox",
-  "permissions": {"private-browsing": true}
+  "permissions": {"private-browsing": true, "multiprocess": true},
+  "engines": {"firefox": ">=38.0a1"}
 }
