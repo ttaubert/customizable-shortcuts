@@ -11,6 +11,7 @@ const system = require("sdk/system");
 const winUtils = require("sdk/deprecated/window-utils");
 const {storage} = require("sdk/simple-storage");
 const {ActionButton} = require("sdk/ui/button/action");
+const {getActiveView, getNodeView} = require("sdk/view/core");
 
 // Import shared modifiers code.
 const gModifiers = eval(self.data.load("shared-modifiers.js") + "gModifiers");
@@ -49,7 +50,6 @@ let panel = panels.Panel({
   }
 });
 
-let {getActiveView} = require("sdk/view/core");
 let view = getActiveView(panel);
 view.setAttribute("ignorekeys", "true");
 view.setAttribute("noautohide", "true");
@@ -81,6 +81,7 @@ new winUtils.WindowTracker({
     if (utils.isBrowser(window)) {
       window.addEventListener("keydown", handlePossibleShortcut);
       window.addEventListener("mousedown", maybeHidePanel);
+      window.addEventListener("click", maybeBlockClickEvent);
     }
   },
 
@@ -88,6 +89,7 @@ new winUtils.WindowTracker({
     if (utils.isBrowser(window)) {
       window.removeEventListener("keydown", handlePossibleShortcut);
       window.removeEventListener("mousedown", maybeHidePanel);
+      window.removeEventListener("click", maybeBlockClickEvent);
     }
   }
 });
@@ -137,6 +139,32 @@ function handlePossibleShortcut(event) {
   }
 }
 
+let blockNextClick = false;
+
 function maybeHidePanel(event) {
+  if (!panel.isShowing) {
+    return;
+  }
+
+  let isLeftMouse = event.button == 0;
+  let targetsToolbarButton = event.originalTarget == getNodeView(button);
+
+  // Block the next click event if the user clicked our toolbar button with
+  // the left mouse button while the panel is open. In that case we don't want
+  // the click event to cause the panel to be shown again immediately.
+  blockNextClick = isLeftMouse && targetsToolbarButton;
+
+  // Hide the panel.
   panel.hide();
+}
+
+function maybeBlockClickEvent(event) {
+  if (!blockNextClick) {
+    return;
+  }
+
+  blockNextClick = false;
+
+  // Block the click event's default action.
+  event.preventDefault();
 }
