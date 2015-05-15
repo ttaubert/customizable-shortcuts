@@ -29,9 +29,9 @@ addEventListener("keydown", function (event) {
   }
 });
 
-// Block mouse events from bubbling up to the parent as that listens for
-// any clicks and will close the panel if it detects outside clicks.
-addEventListener("mousedown", function (event) {
+// Block click events from bubbling up to the parent as
+// that will close the panel if it detects outside clicks.
+addEventListener("click", function (event) {
   event.stopPropagation();
 });
 

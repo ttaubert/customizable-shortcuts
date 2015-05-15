@@ -80,16 +80,14 @@ new winUtils.WindowTracker({
   onTrack(window) {
     if (utils.isBrowser(window)) {
       window.addEventListener("keydown", handlePossibleShortcut);
-      window.addEventListener("mousedown", maybeHidePanel);
-      window.addEventListener("click", maybeBlockClickEvent);
+      window.addEventListener("click", maybeHidePanel);
     }
   },
 
   onUntrack(window) {
     if (utils.isBrowser(window)) {
       window.removeEventListener("keydown", handlePossibleShortcut);
-      window.removeEventListener("mousedown", maybeHidePanel);
-      window.removeEventListener("click", maybeBlockClickEvent);
+      window.removeEventListener("click", maybeHidePanel);
     }
   }
 });
@@ -139,8 +137,6 @@ function handlePossibleShortcut(event) {
   }
 }
 
-let blockNextClick = false;
-
 function maybeHidePanel(event) {
   if (!panel.isShowing) {
     return;
@@ -149,22 +145,14 @@ function maybeHidePanel(event) {
   let isLeftMouse = event.button == 0;
   let targetsToolbarButton = event.originalTarget == getNodeView(button);
 
-  // Block the next click event if the user clicked our toolbar button with
-  // the left mouse button while the panel is open. In that case we don't want
+  // Block the click event if the user clicked our toolbar button with the
+  // left mouse button while the panel is open. In that case we don't want
   // the click event to cause the panel to be shown again immediately.
-  blockNextClick = isLeftMouse && targetsToolbarButton;
+  if (isLeftMouse && targetsToolbarButton) {
+    // Block the click event's default action.
+    event.preventDefault();
+  }
 
   // Hide the panel.
   panel.hide();
-}
-
-function maybeBlockClickEvent(event) {
-  if (!blockNextClick) {
-    return;
-  }
-
-  blockNextClick = false;
-
-  // Block the click event's default action.
-  event.preventDefault();
 }
