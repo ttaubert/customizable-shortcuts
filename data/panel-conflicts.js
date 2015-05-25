@@ -20,7 +20,8 @@ const gConflicts = (function () {
         return false;
       }
 
-      return overlay.modifiers == modifiers && overlay.key == key;
+      return overlay.modifiers == modifiers &&
+             overlay.key.toLowerCase() == key.toLowerCase();
     });
   }
 

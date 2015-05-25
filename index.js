@@ -105,7 +105,9 @@ function findOverlay(event) {
 
   return Object.keys(gOverlays).find(id => {
     let {disabled, key, modifiers} = gOverlays[id];
-    return !disabled && event.key == key && evmodifiers == modifiers;
+    return !disabled &&
+           evmodifiers == modifiers &&
+           event.key.toLowerCase() == key.toLowerCase();
   });
 }
 
@@ -113,7 +115,8 @@ function findOverridden(event) {
   let modifiers = gModifiers.fromEvent(event);
 
   return Object.keys(gOverlays).map(id => gHotKeys[id]).some(hotkey => {
-    return event.key == hotkey.key && modifiers == hotkey.modifiers;
+    return modifiers == hotkey.modifiers &&
+           event.key.toLowerCase() == hotkey.key.toLowerCase();
   });
 }
 

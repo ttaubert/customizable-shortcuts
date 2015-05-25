@@ -59,7 +59,8 @@ const gTree = (function () {
       gConflicts.findAndDisable(id, modifiers, event.key);
 
       // Check if the shortcut was manually reset to its default value.
-      if (hotkey.modifiers == modifiers && hotkey.key == event.key) {
+      if (hotkey.modifiers == modifiers &&
+          hotkey.key.toLowerCase() == event.key.toLowerCase()) {
         // Remove leftovers.
         gOverlays.clear(id);
       } else {
