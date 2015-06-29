@@ -4,6 +4,11 @@
 
 "use strict";
 
+if ("require" in this) {
+  // Set gPlatform ourselves if loaded in the parent.
+  this.gPlatform = require("sdk/system").platform;
+}
+
 const gModifiers = (function () {
   const MODIFIER_NAMES = new Set(["Control", "Shift", "Meta", "Alt", "OS", "AltGraph"]);
   const MODIFIER_KEYS = {16: "shift", 17: "control", 18: "alt", 91: "meta", 92: "meta", 224: "meta"};
@@ -122,3 +127,10 @@ const gModifiers = (function () {
     }
   }
 })();
+
+if ("exports" in this) {
+  // Properly export methods if loaded in the parent.
+  for (let key of Object.keys(gModifiers)) {
+    exports[key] = gModifiers[key];
+  }
+}

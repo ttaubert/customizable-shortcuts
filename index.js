@@ -14,7 +14,7 @@ const {ActionButton} = require("sdk/ui/button/action");
 const {getActiveView, getNodeView} = require("sdk/view/core");
 
 // Import shared modifiers code.
-const gModifiers = eval(self.data.load("shared-modifiers.js") + "gModifiers");
+const gModifiers = require(self.data.url("shared-modifiers.js"));
 
 const hotkeys = require("hotkeys");
 const command = require("command");

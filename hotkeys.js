@@ -9,7 +9,7 @@ const prefs = require("sdk/preferences/service");
 const winUtils = require("sdk/deprecated/window-utils");
 
 // Import shared modifiers code.
-const gModifiers = eval(self.data.load("shared-modifiers.js") + "gModifiers");
+const gModifiers = require(self.data.url("shared-modifiers.js"));
 
 const HOTKEY_LABELS = {
   "focusURLBar": "Focus URL Bar",
