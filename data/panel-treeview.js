@@ -13,9 +13,9 @@ const gTreeView = (function () {
       let parentIdx = rows.push(group) - 1;
 
       if (group.open) {
-        rows.push(...[
-          {type: "key", key, parentIdx} for (key of group.keys)
-        ]);
+        rows.push(...group.keys.map(key => {
+          return {type: "key", key, parentIdx};
+        }));
       }
     }
 
@@ -23,10 +23,9 @@ const gTreeView = (function () {
   }
 
   function create(keys) {
-    let groups = [
-      {type: "group", name: gname, parentIdx: -1, open: true, keys: gkeys}
-      for ([gname, gkeys] of gKeyGroups.group(keys))
-    ];
+    let groups = [...gKeyGroups.group(keys).entries()].map(([name, keys]) => {
+      return {type: "group", name, parentIdx: -1, open: true, keys};
+    });
 
     let rows = buildRows(groups);
 
